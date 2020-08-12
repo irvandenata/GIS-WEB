@@ -8,263 +8,354 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.min.css')}}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
    
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <link rel="stylesheet" href="{{asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-   
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet"> --}}
     @stack('styles')
     @stack('css')
 
   
 
 </head>
-<body>
-    <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
-       @include('layouts.partial.topbar')
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-          <!-- partial:partials/_sidebar.html -->
-          @include('layouts.partial.sidebar')
-          <!-- partial -->
-          <div class="main-panel">
-            <div class="content-wrapper">
-              
-              {{-- <div class="row">
-                <div class="col-md-12 grid-margin">
-                  <div class="d-flex justify-content-between flex-wrap">
-                    <div class="d-flex align-items-end flex-wrap">
-                      <div class="mr-md-3 mr-xl-5">
-                        <h2>Welcome back,</h2>
-                        <p class="mb-md-0">Your analytics dashboard template.</p>
-                      </div>
-                      <div class="d-flex">
-                        <i class="mdi mdi-home text-muted hover-cursor"></i>
-                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Analytics</p>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-end flex-wrap">
-                      <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
-                        <i class="mdi mdi-download text-muted"></i>
-                      </button>
-                      <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
-                        <i class="mdi mdi-clock-outline text-muted"></i>
-                      </button>
-                      <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
-                        <i class="mdi mdi-plus text-muted"></i>
-                      </button>
-                      <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
-             
-              {{-- <div class="row">
-                <div class="col-md-12 grid-margin stretch-card">
-                  <div class="card">
-                    <div class="card-body dashboard-tabs p-0">
-                      <ul class="nav nav-tabs px-4" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="sales-tab" data-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="false">Sales</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="purchases-tab" data-toggle="tab" href="#purchases" role="tab" aria-controls="purchases" aria-selected="false">Purchases</a>
-                        </li>
-                      </ul>
-                      <div class="tab-content py-0 px-0">
-                        <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                          <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-calendar-heart icon-lg mr-3 text-primary"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Start date</small>
-                                <div class="dropdown">
-                                  <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                                  </a>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                                    <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                    <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                    <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Revenue</small>
-                                <h5 class="mr-2 mb-0">$577545</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Total views</small>
-                                <h5 class="mr-2 mb-0">9833550</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Downloads</small>
-                                <h5 class="mr-2 mb-0">2233783</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Flagged</small>
-                                <h5 class="mr-2 mb-0">3497843</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
-                          <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-calendar-heart icon-lg mr-3 text-primary"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Start date</small>
-                                <div class="dropdown">
-                                  <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                                  </a>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                                    <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                    <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                    <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Downloads</small>
-                                <h5 class="mr-2 mb-0">2233783</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Total views</small>
-                                <h5 class="mr-2 mb-0">9833550</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Revenue</small>
-                                <h5 class="mr-2 mb-0">$577545</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Flagged</small>
-                                <h5 class="mr-2 mb-0">3497843</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
-                          <div class="d-flex flex-wrap justify-content-xl-between">
-                            <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-calendar-heart icon-lg mr-3 text-primary"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Start date</small>
-                                <div class="dropdown">
-                                  <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                                  </a>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkA">
-                                    <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                    <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                    <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Revenue</small>
-                                <h5 class="mr-2 mb-0">$577545</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Total views</small>
-                                <h5 class="mr-2 mb-0">9833550</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Downloads</small>
-                                <h5 class="mr-2 mb-0">2233783</h5>
-                              </div>
-                            </div>
-                            <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                              <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
-                              <div class="d-flex flex-column justify-content-around">
-                                <small class="mb-1 text-muted">Flagged</small>
-                                <h5 class="mr-2 mb-0">3497843</h5>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
-              
-             @yield('content')
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div id="app">
+  <div class="wrapper">
+    <!-- Navbar -->
+    @include('layouts.partial.topbar')
+    <!-- /.navbar -->
+  
+    <!-- Main Sidebar Container -->
+    @include('layouts.partial.sidebar')
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>DataTables</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+              </div>
             </div>
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-           
-            <!-- partial -->
-          </div>
-          <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
+          </div><!-- /.container-fluid -->
+        </section>
+      
+        <!-- Main content -->
+        <section class="content">
+          @yield('content')
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
       </div>
+     
+      {{-- <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row ">
+            <div class="col-sm-6">
+              <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">CPU Traffic</span>
+                  <span class="info-box-number">
+                    10
+                    <small>%</small>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Likes</span>
+                  <span class="info-box-number">41,410</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+  
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+  
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">Sales</span>
+                  <span class="info-box-number">760</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+  
+                <div class="info-box-content">
+                  <span class="info-box-text">New Members</span>
+                  <span class="info-box-number">2,000</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+  
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Monthly Recap Report</h5>
+  
+                  <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-wrench"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <a href="#" class="dropdown-item">Action</a>
+                        <a href="#" class="dropdown-item">Another action</a>
+                        <a href="#" class="dropdown-item">Something else here</a>
+                        <a class="dropdown-divider"></a>
+                        <a href="#" class="dropdown-item">Separated link</a>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="text-center">
+                        <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                      </p>
+  
+                      <div class="chart">
+                        <!-- Sales Chart Canvas -->
+                        <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                      </div>
+                      <!-- /.chart-responsive -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-4">
+                      <p class="text-center">
+                        <strong>Goal Completion</strong>
+                      </p>
+  
+                      <div class="progress-group">
+                        Add Products to Cart
+                        <span class="float-right"><b>160</b>/200</span>
+                        <div class="progress progress-sm">
+                          <div class="progress-bar bg-primary" style="width: 80%"></div>
+                        </div>
+                      </div>
+                      <!-- /.progress-group -->
+  
+                      <div class="progress-group">
+                        Complete Purchase
+                        <span class="float-right"><b>310</b>/400</span>
+                        <div class="progress progress-sm">
+                          <div class="progress-bar bg-danger" style="width: 75%"></div>
+                        </div>
+                      </div>
+  
+                      <!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Visit Premium Page</span>
+                        <span class="float-right"><b>480</b>/800</span>
+                        <div class="progress progress-sm">
+                          <div class="progress-bar bg-success" style="width: 60%"></div>
+                        </div>
+                      </div>
+  
+                      <!-- /.progress-group -->
+                      <div class="progress-group">
+                        Send Inquiries
+                        <span class="float-right"><b>250</b>/500</span>
+                        <div class="progress progress-sm">
+                          <div class="progress-bar bg-warning" style="width: 50%"></div>
+                        </div>
+                      </div>
+                      <!-- /.progress-group -->
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- ./card-body -->
+                <div class="card-footer">
+                  <div class="row">
+                    <div class="col-sm-3 col-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                        <h5 class="description-header">$35,210.43</h5>
+                        <span class="description-text">TOTAL REVENUE</span>
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-3 col-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                        <h5 class="description-header">$10,390.90</h5>
+                        <span class="description-text">TOTAL COST</span>
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-3 col-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                        <h5 class="description-header">$24,813.53</h5>
+                        <span class="description-text">TOTAL PROFIT</span>
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-3 col-6">
+                      <div class="description-block">
+                        <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                        <h5 class="description-header">1200</h5>
+                        <span class="description-text">GOAL COMPLETIONS</span>
+                      </div>
+                      <!-- /.description-block -->
+                    </div>
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.card-footer -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+  
+         
+        </div><!--/. container-fluid -->
+      </section>
+      <!-- /.content --> --}}
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.0.5
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+</div>
+              
+              
+          
+            
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-   
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
 
-    {{-- <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script> --}}
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-   
-    <!-- endinject -->
-    <!-- Custom js for this page-->
+
+    
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap -->
+<script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- overlayScrollbars -->
+<script src="{{asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
+{{-- 
+<!-- OPTIONAL SCRIPTS -->
+<script src="{{asset('assets/dist/js/demo.js')}}"></script> --}}
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+{{-- <script src="{{asset('assets/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+<script src="{{asset('assets/plugins/raphael/raphael.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<!-- ChartJS -->
+<script src="{{asset('assets/plugins/chart.js/Chart.min.js')}}"></script> --}}
+
+
+<!-- OPTIONAL SCRIPTS -->
+{{-- <script src="{{asset('dist/js/demo.js')}}}"></script> --}}
+
+
+
+<!-- PAGE SCRIPTS -->
+{{-- <script src="{{asset('dist/js/pages/dashboard2.js')}}}"></script> --}}
+  
    
     @stack('scripts')
     @stack('js')
+
+    <script>
+     $('[data-widget="pushmenu"]').PushMenu('colapses')
+     
+    </script>
+
 </body>
 </html>

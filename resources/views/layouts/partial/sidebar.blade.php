@@ -1,75 +1,99 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <li class="nav-item {{ Request::is('dashboard') ? 'active' : (Request::is('/') ? 'active' :null) }}">
-        <a class="nav-link " href="{{ route('dashboard') }}"">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-          <i class="mdi mdi-grid-large menu-icon"></i>
-          <span class="menu-title">Data Potensi</span>
-          <i class="menu-arrow"></i>
-        </a>
 
-        <div class="collapse {{ Request::is('potensi/ekonomi') ? 'show' : (Request::is('potensi/listrik')? 'show' :( Request::is('potensi/ekonomi')? 'show' :null))   }}" id="ui-basic">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item {{ Request::is('potensi/ekonomi') ? 'active' : null }}"> <a class="nav-link" href="{{ route('potensi.ekonomi.index') }}"><i class="mdi mdi-scale menu-icon"></i><span class="menu-title">Ekonomi</span></a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Tambang</span></a></li>
-            <li class="nav-item "> <a class="nav-link" href="pages/ui-features/buttons.html"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Sosial</span></a></li>
-            <li class="nav-item {{ Request::is('potensi/listrik') ? 'active' : null }}"> <a class="nav-link" href="{{ route('potensi.listrik.index') }}"><i class="mdi mdi mdi-flash menu-icon"></i><span class="menu-title">Listrik</span></a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Lingkungan</span></a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item {{ Request::is('bangunan') ? 'active' : null }} ">
-      <a class="nav-link" href="{{route('bangunan.index')}}">
-          <i class="mdi mdi-map-marker menu-icon"></i>
-          <span class="menu-title">Data Bangunan</span>
-        </a>
-      </li>
-
-      <li class="nav-item ">
-        <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
-          <i class="mdi mdi-grid-large menu-icon"></i>
-          <span class="menu-title">Data Wilayah</span>
-          <i class="menu-arrow"></i>
-        </a>
-
-        <div class="collapse {{ Request::is('wilayah/kabupaten') ? 'show' : (Request::is('wilayah/kecamatan')? 'show' :( Request::is('wilayah/desa')? 'show' :null))   }}" id="ui-basic2">
-          <ul class="nav flex-column sub-menu">
-           
-            <li class="nav-item {{ Request::is('wilayah/kabupaten') ? 'active' : null }}"> <a class="nav-link" href="{{ route('wilayah.kabupaten.index') }}"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Kabupaten</span></a></li>
-            <li class="nav-item {{ Request::is('wilayah/kecamatan') ? 'active' : null }}"> <a class="nav-link" href="{{ route('wilayah.kecamatan.index') }}"><i class="mdi mdi mdi-flash menu-icon"></i><span class="menu-title">Kecamatan</span></a></li>
-            <li class="nav-item {{ Request::is('wilayah/desa') ? 'active' : null }}"> <a class="nav-link" href="{{ route('wilayah.desa.index') }}"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Desa</span></a></li>
-          </ul>
-        </div>
-      </li>
-      
-      <li class="nav-item">
-      <a class="nav-link" href="{{route('map')}}">
-          <i class="mdi mdi-map-marker menu-icon"></i>
-          <span class="menu-title">Maps Potensi</span>
-        </a>
-      </li>
-     
-      <li class="nav-item">
-        <a class="nav-link" href="documentation/documentation.html">
-          <i class="mdi mdi-account menu-icon"></i>
-          <span class="menu-title">Edit Akun</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('logout') }}"  onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">
-          <i class="mdi mdi-logout-variant menu-icon"></i>
-          <span class="menu-title">Keluar</span>
+            {{-- <li class="nav-item {{ Request::is('wilayah/desa') ? 'active' : null }}"> <a class="nav-link" href="{{ route('wilayah.desa.index') }}"><i class="mdi mdi-pine-tree menu-icon"></i><span class="menu-title">Desa</span></a></li> --}}
+            <aside class="main-sidebar  sidebar-dark-primary elevation-4  ">
+              <!-- Brand Logo -->
+              <a href="index3.html" class="brand-link">
+                <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">AdminLTE 3</span>
+              </a>
           
-        </a>
-       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-             @csrf
-          </form>
-      </li>
-    </ul>
-  </nav>
+              <!-- Sidebar -->
+              <div class="sidebar ">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                  <div class="image">
+                    <img src="{{asset('assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                  </div>
+                  <div class="info">
+                    <a href="#" class="d-block">Alexander Pierce</a>
+                  </div>
+                </div>
+          
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item ">
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                          Dashboard
+                          
+                        </p>
+                      </a>
+                     
+                    </li>
+                    <li class="nav-item">
+                      <a href="pages/widgets.html" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                          Widgets
+                          
+                        </p>
+                      </a>
+                    </li>
+                    
+                    <li class="nav-item has-treeview {{ Request::is('wilayah/kabupaten') ? 'menu-open' :(Request::is('wilayah/kecamatan') ? 'menu-open' : (Request::is('wilayah/desa') ? 'menu-open' : null)) }} ">
+                      <a href="#" class="nav-link {{ Request::is('wilayah/kabupaten') ? 'active' :(Request::is('wilayah/kecamatan') ? 'active' : (Request::is('wilayah/desa') ? 'active' : null)) }}">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                          Data Wilayah
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                        <a href="{{route('wilayah.kabupaten.index')}}" class="nav-link {{ Request::is('wilayah/kabupaten') ? 'active' : null }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kabupaten</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{route('wilayah.kecamatan.index')}}" class="nav-link {{ Request::is('wilayah/kecamatan') ? 'active' : null }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Kecamatan</p>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="{{route('wilayah.desa.index')}}" class="nav-link {{ Request::is('wilayah/desa') ? 'active' : null }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Desa</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                          Keluar
+                        </p>
+                      </a>
+                     
+
+                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                       @csrf
+                   </form>
+                    </li>
+                   
+                    
+                   
+                  </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+              </div>
+              <!-- /.sidebar -->
+            </aside>

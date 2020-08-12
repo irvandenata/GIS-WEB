@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kecamatan extends Model
 {
-    protected $guard = [];
+    protected $fillable =   [ 'id', 'nama','jenis','kabupaten_id', 'latitude','longitude','deskripsi'];
     public function desas(){
         return $this->hasMany(Desa::class);
     }

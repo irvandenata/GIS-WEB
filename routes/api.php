@@ -28,4 +28,8 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
     Route:: get('data/kecamatan/{id}', 'DataSelectController@kecamatan')->name('ambil.kecamatan');
     Route:: get('data/desa/{id}', 'DataSelectController@desa')->name('ambil.kecamatan');
     Route:: get('data/desa/{id}', 'DataSelectController@desa')->name('ambil.desa');
+        
+    Route::resource('wilayah/kabupaten/api','Wilayah\KabupatenController');
+    Route::get('wilayah/kabupaten/api/search/{field}/{query}','Wilayah\KabupatenController@search');
+
 });

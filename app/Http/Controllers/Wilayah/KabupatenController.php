@@ -23,10 +23,10 @@ class KabupatenController extends Controller
                 ->addColumn('action', function ($data) {
                     return '
                     <div class="row justify-content-center">
-                                <a class="btn btn-primary text-white  mr-1 ml-1"  onclick="detailItem(' . $data->id . ')">Detail</span></a>
-                                <a class="btn btn-success text-white  mr-1 ml-1" href="'. route('wilayah.kabupaten.edit', $data->id) .'" >Edit</span></a>
+                               
+                                <a class="btn btn-success btn-sm text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')">Edit</span></a>
                                 
-                                <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
+                                <a id="delete" class="btn btn-danger btn-sm text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
                 })
                 ->addIndexColumn()
@@ -44,7 +44,7 @@ class KabupatenController extends Controller
     public function create()
     {
         
-        return view('admin.wilayah.kabupaten.create');
+        // return view('admin.wilayah.kabupaten.create');
     }
 
     /**
@@ -53,26 +53,10 @@ class KabupatenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if($request->deskripsi == null){
-            $request->deskripsi = "" ;
-        }
-        if($request->latitude == null){
-            $request->latidude = "" ;
-        }
-        if($request->longitude == null){
-            $request->longitude = "" ;
-        }
-        
-        Kabupaten::insert([        
-            'nama'     => $request->nama,
-            
-            'deskripsi'=> $request->deskripsi,
-            'latitude'=> $request->latitude,
-            'longitude'=> $request->longitude    
-      ]);
-      return redirect('wilayah/kabupaten');
+    public function store(Request $request,Kabupaten $kabupaten)
+    {    
+        $kabupaten=Kabupaten::create($request->all());
+        return $kabupaten;
     }
 
     /**
@@ -83,8 +67,7 @@ class KabupatenController extends Controller
      */
     public function show($id)
     {
-        $deskripsi = Kabupaten::find($id);
-        return $deskripsi;
+        
     }
 
     /**
@@ -93,10 +76,10 @@ class KabupatenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kabupaten $kabupaten)
     {
-        $data = Kabupaten::find($id);
-        return view('admin.wilayah.kabupaten.edit',compact('data'));
+        
+        return $kabupaten;
     }
 
     /**
@@ -106,26 +89,11 @@ class KabupatenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kabupaten $kabupaten)
     {
-        if($request->deskripsi == null){
-            $request->deskripsi = "" ;
-        }
-        if($request->latitude == null){
-            $request->latidude = "" ;
-        }
-        if($request->longitude == null){
-            $request->longitude = "" ;
-        }
-            
-            $data = Kabupaten::find($id);
-         $data->nama     = $request->nama;      
-         $data->deskripsi = $request->deskripsi;
-         $data->latitude = $request->latitude;
-         $data->longitude =  $request->longitude;    
-         $data->save();
-  
-      return redirect('wilayah/kabupaten');
+
+        $kabupaten->update($request->all());
+        return $kabupaten;
     }
 
     /**
@@ -134,9 +102,9 @@ class KabupatenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kabupaten $kabupaten)
     {
-        Kabupaten::find($id)->delete();
-        return session(['status'=> 'Data Aset Telah Berhasil Dihapus']);
+        $kabupaten->delete();
+        return response()->json(['message', 'deleted success']);
     }
 }

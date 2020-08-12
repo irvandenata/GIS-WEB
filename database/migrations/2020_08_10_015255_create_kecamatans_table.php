@@ -17,7 +17,7 @@ class CreateKecamatansTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->unsignedInteger('kabupaten_id');
-            $table->string('Jenis');
+            $table->string('jenis');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('deskripsi')->nullable();

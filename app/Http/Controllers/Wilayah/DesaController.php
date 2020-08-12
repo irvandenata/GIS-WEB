@@ -24,8 +24,8 @@ class DesaController extends Controller
                 ->addColumn('action', function ($data) {
                     return '
                     <div class="row justify-content-center">
-                    <a class="btn btn-primary text-white  mr-1 ml-1"  onclick="detailItem(' . $data->id . ')">Detail</span></a>
-                                <a class="btn btn-success text-white  mr-1 ml-1" href="'. route('wilayah.kecamatan.edit', $data->id) .'" >Edit</span></a>
+                   
+                                <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')" >Edit</span></a>
                                 
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
@@ -40,7 +40,8 @@ class DesaController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-     return view('admin.wilayah.desa.index');
+        $data=Kecamatan::select('id','nama')->get();
+     return view('admin.wilayah.desa.index',compact('data'));
     }
 
     /**
@@ -50,9 +51,7 @@ class DesaController extends Controller
      */
     public function create()
     {
-        $kecamatan = Kecamatan::all();
-       
-        return view('admin.wilayah.desa.create',compact('kecamatan'));
+
     }
 
     /**
@@ -61,28 +60,10 @@ class DesaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Desa $desa)
     {
-        if($request->deskripsi == null){
-            $request->deskripsi = "" ;
-        }
-        if($request->latitude == null){
-            $request->latidude = "" ;
-        }
-        if($request->longitude == null){
-            $request->longitude = "" ;
-        }
-        Desa::insert([        
-            'nama'     => $request->nama,
-            'kecamatan_id'     => $request->kecamatan_id,
-            'deskripsi'=> $request->deskripsi,
-            'latitude'=> $request->latitude,
-            'longitude'=> $request->longitude  
-           
-            
-               
-      ]);
-      return redirect('wilayah/desa');
+        $desa=Desa::create($request->all());
+        return $desa;
     }
 
     /**
@@ -93,8 +74,7 @@ class DesaController extends Controller
      */
     public function show($id)
     {
-        $deskripsi = Desa::find($id);
-        return $deskripsi;
+        
     }
 
     /**
@@ -103,9 +83,9 @@ class DesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Desa $desa)
     {
-        //
+        return $desa;
     }
 
     /**
@@ -115,9 +95,10 @@ class DesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Desa $desa)
     {
-        //
+        $desa->update($request->all());
+        return $desa;
     }
 
     /**
@@ -126,8 +107,9 @@ class DesaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Desa $desa)
     {
-        //
+        $desa->delete();
+        return response()->json(['message', 'deleted success']);
     }
 }

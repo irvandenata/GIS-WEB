@@ -23,8 +23,8 @@ class KecamatanController extends Controller
                 ->addColumn('action', function ($data) {
                     return '
                     <div class="row justify-content-center">
-                    <a class="btn btn-primary text-white  mr-1 ml-1"  onclick="detailItem(' . $data->id . ')">Detail</span></a>
-                                <a class="btn btn-success text-white  mr-1 ml-1" href="'. route('wilayah.kecamatan.edit', $data->id) .'" >Edit</span></a>
+                   
+                                <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')">Edit</span></a>
                                 
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
@@ -36,7 +36,9 @@ class KecamatanController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-     return view('admin.wilayah.kecamatan.index');
+
+     $data=Kabupaten::select('id','nama')->get();
+     return view('admin.wilayah.kecamatan.index',compact('data'));
     }
 
     /**
@@ -46,8 +48,8 @@ class KecamatanController extends Controller
      */
     public function create()
     {
-        $kabupaten = Kabupaten::all();
-        return view('admin.wilayah.kecamatan.create',compact('kabupaten'));
+        // $kabupaten = Kabupaten::all();
+        // return view('admin.wilayah.kecamatan.create',compact('kabupaten'));
     }
 
     /**
@@ -56,27 +58,10 @@ class KecamatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if($request->deskripsi == null){
-            $request->deskripsi = "" ;
-        }
-        if($request->latitude == null){
-            $request->latidude = "" ;
-        }
-        if($request->longitude == null){
-            $request->longitude = "" ;
-        }
-        
-        Kecamatan::insert([        
-            'nama'     => $request->nama,
-            'kabupaten_id'     => $request->kabupaten_id,
-            'jenis'     => $request->jenis,
-            'deskripsi'=> $request->deskripsi,
-            'latitude'=> $request->latitude,
-            'longitude'=> $request->longitude    
-      ]);
-      return redirect('wilayah/kecamatan');
+    public function store(Request $request,Kecamatan $kecamatan)
+    {    
+        $kecamatan=Kecamatan::create($request->all());
+        return $kecamatan;
     }
 
     /**
@@ -87,8 +72,7 @@ class KecamatanController extends Controller
      */
     public function show($id)
     {
-        $deskripsi = Kecamatan::find($id);
-        return $deskripsi;
+        
     }
 
     /**
@@ -97,11 +81,9 @@ class KecamatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kecamatan $kecamatan)
     {
-        $data = Kecamatan::find($id);
-        $kabupaten = Kabupaten::all();
-        return view('admin.wilayah.kecamatan.edit',compact('data','kabupaten'));
+        return $kecamatan;
     }
 
     /**
@@ -111,27 +93,11 @@ class KecamatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kecamatan $kecamatan)
     {
-        if($request->deskripsi == null){
-            $request->deskripsi = "" ;
-        }
-        if($request->latitude == null){
-            $request->latidude = "" ;
-        }
-        if($request->longitude == null){
-            $request->longitude = "" ;
-        }
-            
-            $data = Kecamatan::find($id);
-         $data->nama     = $request->nama; 
-         $data->kabupaten_id     = $request->kabupaten_id;
-         $data->jenis     = $request->jenis;  
-         $data->deskripsi = $request->deskripsi;
-         $data->latitude = $request->latitude;
-         $data->longitude =  $request->longitude;    
-         $data->save();
-         return redirect('wilayah/kecamatan');
+
+        $kecamatan->update($request->all());
+        return $kecamatan;
     }
 
     /**
@@ -140,9 +106,9 @@ class KecamatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kecamatan $kecamatan)
     {
-        Kecamatan::find($id)->delete();
-        return session(['status'=> 'Data Aset Telah Berhasil Dihapus']);
+        $kecamatan->delete();
+        return response()->json(['message', 'deleted success']);
     }
 }
