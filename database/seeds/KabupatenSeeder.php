@@ -14,7 +14,7 @@ class KabupatenSeeder extends Seeder
     {
         Kabupaten::create([
             'nama'  => 'Belum di Isi', 
-            'kabupaten_id'  => 1,   
+            
     ]);
     }
 }

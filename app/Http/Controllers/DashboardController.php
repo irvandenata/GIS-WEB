@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Asset;
 use App\Place;
+use App\Potensi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
@@ -29,9 +30,9 @@ class DashboardController extends Controller
         //         ->make(true);
         // }
 
-        $listrik = Asset::where("potensi_id","=",3)->count();
+        $dataPotensi = Potensi::all();
 
-        return view('admin.dashboard',compact('listrik'));
+        return view('admin.dashboard',compact('dataPotensi'));
         
 
 

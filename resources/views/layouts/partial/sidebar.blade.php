@@ -26,7 +26,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item ">
-                      <a href="#" class="nav-link {{ Request::is('dashboard') ? 'active' : (Request::is('/') ? 'active' : null) }}">
+                      <a href="{{route('dashboard')}}" class="nav-link {{ Request::is('dashboard') ? 'active' : (Request::is('/') ? 'active' : null) }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                           Dashboard

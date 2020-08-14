@@ -172,6 +172,24 @@ var  api = "/data/1";
 </script>
 
 <script>
+function setSelect(id){
+
+var url = '{{ route("datasel", ":id") }}';
+          url = url.replace(':id',id);
+        $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success:function(data) { 
+                                  console.log(data) 
+                    $('select[name="bangunan_id"]').empty();
+                    $('select[name="bangunan_id"]').append('<option disabled selected value>---- Pilih Salah Satu ----</option>');
+                    $.each(data, function(key, value) {
+                        $('select[name="bangunan_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+}
     /** set data untuk edit**/
     function setData(result){
         //console.log(result)
@@ -286,27 +304,34 @@ var  api = "/data/1";
         $('.card-header h3').text("Listrik");
         $('input[name=potensi_id]').val(3);
         datatable.ajax.url( child_url+"/data/"+3 ).load();
+        setSelect(3)
+       
     });
     $('#eko').on('click',function(){
         $('.card-header h3').text("Ekonomi");
         $('input[name=potensi_id]').val(1);
         datatable.ajax.url( child_url+"/data/"+1 ).load();
+        setSelect(1)
     });
     $('#lin').on('click',function(){
         $('.card-header h3').text("Lingkungan");
         $('input[name=potensi_id]').val(2);
         datatable.ajax.url( child_url+"/data/"+2 ).load();
+        setSelect(2)
     });
     $('#tam').on('click',function(){
         $('.card-header h3').text("Tambang");
         $('input[name=potensi_id]').val(4);
         datatable.ajax.url( child_url+"/data/"+4 ).load();
+        setSelect(4)
     });
     $('#sos').on('click',function(){
         $('.card-header h3').text("Sosial");
         $('input[name=potensi_id]').val(5);
         datatable.ajax.url( child_url+"/data/"+5 ).load();
+        setSelect(5)
     });
+    
     
 
     

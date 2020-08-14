@@ -8,6 +8,7 @@ use App\Desa;
 use App\Http\Controllers\Controller;
 use App\Kabupaten;
 use App\Kecamatan;
+use App\Potensi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -21,7 +22,7 @@ class PotensiController extends Controller
     public function index()
     {
        
-        $bangunan = Bangunan::select('id','nama')->get();
+        $bangunan = Bangunan::where('potensi_id','=',1)->select('id','nama')->get();
         
         $kab = Kabupaten::select('id','nama')->get();
         $kec = Kecamatan::select('id','nama')->get();
@@ -86,6 +87,16 @@ class PotensiController extends Controller
                     ->pluck("nama","id");
       return json_encode($desa);
     }
+
+    public function sel($id)
+    {
+      $sel = Potensi::find($id)->bangunans
+      ->pluck("nama","id");
+      return json_encode($sel);
+    }
+    
+
+    
 
 
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    protected $fillable = ['id','nama','bangunan_id','potensi_id','kecamatan_id','kabupaten_id','desa_id','deskripsi','latitude','longitude'];
+    protected $fillable = ['nama','bangunan_id','potensi_id','kecamatan_id','kabupaten_id','desa_id','deskripsi','latitude','longitude'];
    
 
 
@@ -51,6 +51,9 @@ class Asset extends Model
 
     public function desa(){
         return $this->belongsTo(Desa::class);
+    }
+    public function potensi(){
+        return $this->belongsTo(Potensi::class);
     }
 
 

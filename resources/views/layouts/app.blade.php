@@ -27,16 +27,16 @@
   <div id="app">
   <div class="wrapper">
     <!-- Navbar -->
-    @include('layouts.partial.topbar')
+    {{-- @include('layouts.partial.topbar') --}}
     <!-- /.navbar -->
   
     <!-- Main Sidebar Container -->
     @include('layouts.partial.sidebar')
   
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="margin-top: 0px;">
 
-      <div class="content-wrapper">
+     
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <div class="container-fluid">
@@ -280,6 +280,13 @@
         </div><!--/. container-fluid -->
       </section>
       <!-- /.content --> --}}
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+          <b>Version</b> 3.0.5
+        </div>
+      </footer>
     </div>
     <!-- /.content-wrapper -->
   
@@ -290,13 +297,7 @@
     <!-- /.control-sidebar -->
   
     <!-- Main Footer -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.0.5
-      </div>
-    </footer>
+    
   </div>
   <!-- ./wrapper -->
 </div>
