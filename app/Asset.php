@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    protected $guard = [];
+    protected $fillable = ['id','nama','bangunan_id','potensi_id','kecamatan_id','kabupaten_id','desa_id','deskripsi','latitude','longitude'];
+   
 
-    public $appends = [
-        'coordinate', 'map_popup_content',
-    ];
+
+    // public $appends = [
+    //     'coordinate', 'map_popup_content',
+    // ];
 
 
     // public function getNameLinkAttribute()
@@ -52,21 +54,21 @@ class Asset extends Model
     }
 
 
-    public function getCoordinateAttribute()
-    {
-        if ($this->latitude && $this->longitude) {
-            return $this->latitude.', '.$this->longitude;
-        }
-    }
+    // public function getCoordinateAttribute()
+    // {
+    //     if ($this->latitude && $this->longitude) {
+    //         return $this->latitude.', '.$this->longitude;
+    //     }
+    // }
 
-    public function getMapPopupContentAttribute()
-    {
-        $mapPopupContent = '';
-        $mapPopupContent .= '<div class="my-2 "><div class="row justify-content-center"><img src="'. asset('assets/images/gambar.jpg') .'" width="150px" height="150px"></div></div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('Nama Tempat').':</strong><br>'.$this->nama.'</div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('Jenis').':</strong><br>'.Bangunan::find($this->bangunan_id)->nama.'</div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
+    // public function getMapPopupContentAttribute()
+    // {
+    //     $mapPopupContent = '';
+    //     // $mapPopupContent .= '<div class="my-2 "><div class="row justify-content-center"><img src="'. asset('assets/images/gambar.jpg') .'" width="150px" height="150px"></div></div>';
+    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Nama Tempat').':</strong><br>'.$this->nama.'</div>';
+    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Jenis').':</strong><br>'.Bangunan::find($this->bangunan_id)->nama.'</div>';
+    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
 
-        return $mapPopupContent;
-    }
+    //     return $mapPopupContent;
+    // }
 }

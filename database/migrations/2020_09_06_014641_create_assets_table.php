@@ -16,15 +16,16 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
            
             $table->increments('id');
-            $table->unsignedInteger('bangunan_id');
+            $table->unsignedInteger('bangunan_id')->default(1);
             $table->unsignedInteger('potensi_id');
             
+           
+            
+            $table->unsignedInteger('kabupaten_id')->default(1);
+            $table->unsignedInteger('kecamatan_id')->default(1);
+            $table->unsignedInteger('desa_id')->default(1);
             $table->string('nama');
             $table->string('deskripsi')->nullable();
-            $table->unsignedInteger('kabupaten_id')->nullable();
-            $table->unsignedInteger('kecamatan_id')->nullable();
-            $table->unsignedInteger('desa_id')->nullable();
-            
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('gambar')->nullable();

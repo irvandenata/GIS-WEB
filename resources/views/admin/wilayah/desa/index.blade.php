@@ -102,7 +102,7 @@
 
   $('#dataTable').DataTable({
       dom: 'lBfrtip',
-      
+     
       responsive:true,
       processing:true,
       serverSide:true,

@@ -23,7 +23,7 @@ class BangunanController extends Controller
                     return '
                     <div class="row justify-content-center">
                                 
-                                <a class="btn btn-success text-white  mr-1 ml-1" href="'. route('bangunan.edit', $asset->id) .'" >Edit</span></a>
+                                <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $asset->id . ')">Edit</span></a>
                                 
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $asset->id . ')" >Delete</span></a>
                                 </div>';
@@ -35,12 +35,14 @@ class BangunanController extends Controller
                 
                 
                 ->removeColumn(' id')
+
                
                 ->addIndexColumn()
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin.bangunan.index');
+        $potensi=Potensi::select('id','nama')->get();
+        return view('admin.bangunan.index',compact('potensi'));
     }
 
     /**
@@ -50,8 +52,7 @@ class BangunanController extends Controller
      */
     public function create()
     {
-        $data = Potensi::all();
-        return view('admin.bangunan.create',compact('data'));
+       
     }
 
     /**
@@ -60,15 +61,10 @@ class BangunanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Bangunan $bangunan)
     {
-       
-        Bangunan::insert([        
-            'nama'     => $request->nama,
-            'potensi_id'     => $request->potensi_id,           
-              
-      ]);
-      return redirect('bangunan');
+       $bangunan = Bangunan::create($request->all());
+       return $bangunan;
     }
 
     /**
@@ -77,9 +73,9 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Bangunan $bangunan)
     {
-        
+       
     }
 
     /**
@@ -88,13 +84,9 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bangunan $bangunan)
     {
-        $data = Bangunan::find($id);
-        
-        $potensi = Potensi::all();
-        
-        return view('admin.bangunan.edit',compact('data','potensi'));
+       return $bangunan;
     }
 
     /**
@@ -104,15 +96,10 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Bangunan $bangunan)
     {
-        $data = Bangunan::find($id);
-        $data->nama     = $request->nama;      
-        
-        $data->potensi_id = $request->potensi_id;
-           
-        $data->save();
-        return redirect('bangunan');
+       $bangunan->update($request->all());
+       return $bangunan;
     }
 
     /**
@@ -121,9 +108,9 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bangunan $bangunan)
     {
-        Bangunan::find($id)->delete();
-        return session(['status'=> 'Data Aset Telah Berhasil Dihapus']);
+        $bangunan->delete();
+        return response()->json(['message', 'deleted success']);
     }
 }

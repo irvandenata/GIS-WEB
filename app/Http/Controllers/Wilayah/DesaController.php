@@ -25,9 +25,9 @@ class DesaController extends Controller
                     return '
                     <div class="row justify-content-center">
                    
-                                <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')" >Edit</span></a>
+                                <a class="btn btn-success text-white  m-1" onclick="editItem(' . $data->id . ')" >Edit</span></a>
                                 
-                                <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
+                                <a id="delete" class="btn btn-danger text-white  m-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
                 })
                 ->addIndexColumn()
@@ -54,7 +54,7 @@ class DesaController extends Controller
 
     }
 
-    /**
+    /**php
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

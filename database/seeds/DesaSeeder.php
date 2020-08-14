@@ -13,7 +13,9 @@ class DesaSeeder extends Seeder
     public function run()
     {
         Desa::create([
-            'nama'  => 'Belum di Isi',   
+            'nama'  => 'Belum di Isi',  
+            'kecamatan_id'  => 1, 
+              
     ]);
     }
 }

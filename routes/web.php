@@ -18,52 +18,31 @@ Route::get('/', function () {
     return view('home');
 })->name('map');
 
-
-
-
-
 Auth::routes();
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-// Route::get('dashboard', 'AssetController@index');
-
-
-
-
-
-
-
-// Route::get('user/json','AssetController@json');
-
-
-
-
-Route::group(['middleware'=>'auth'], function(){
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-});
-
-
-Route::resource('bangunan', 'BangunanController');
-
-Route::group([ 'as'=>'potensi.','namespace' => 'Potensi','prefix'=>'potensi','middleware'=>'auth'], function () {
+Route::group(['middleware'=>'auth'], function () {
     /*
      * Outlets Endpoints
      */
    
-    Route::resource('ekonomi', 'EkonomiController');
-    Route::delete('ekonomi/{id}','EkonomiController@destroy')->name('ekonomi.hapus');
-    Route:: get('ekonomi/data/kecamatan/{id}', 'EkonomiController@kecamatan');
-    Route:: get('data/kecamatan/{id}', 'EkonomiController@kecamatan')->name('ambil.kecamatan');
-    Route:: get('ekonomi/data/desa/{id}', 'EkonomiController@desa');
-    Route:: get('data/desa/{id}', 'EkonomiController@desa')->name('ambil.desa');
-    
-
-
-
-    Route::resource('listrik', 'listrikController');
-    
+    Route::resource('bangunan', 'BangunanController');
+     Route::get('potensi/data/{id}', [
+    'as' => 'potensi.data',
+    'uses' => 'PotensiController@api'
+    ]);
+    Route::resource('potensi', 'PotensiController');
+    Route::get('potensi/datakec/{id}','PotensiController@kecamatan')->name('datakec');
+    Route::get('potensi/datades/{id}','PotensiController@desa')->name('datades');
+     //controller for listrik
+    //  Route::resource('listrik', 'ListrikController',['except' => 'index']);
+    //  Route::get('listrik/datakec/{id}','ListrikController@kecamatan')->name('datakec');
+    //  Route::get('listrik/datades/{id}','ListrikController@desa')->name('datades');
+     //endlistrik
    
-    
-    
+     //controller for ekonomi
+    // Route::resource('ekonomi', 'EkonomiController');
+    //endekonomi
 });
 
 
@@ -71,12 +50,9 @@ Route::group([ 'as'=>'wilayah.','namespace' => 'Wilayah','prefix'=>'wilayah','mi
     /*
      * Outlets Endpoints
      */
-   
-
+    //controller wilayah
     Route::resource('kabupaten', 'KabupatenController');
     Route::resource('kecamatan', 'KecamatanController');
     Route::resource('desa', 'DesaController');
-   
-    
-    
+   //endwilayah  
 });

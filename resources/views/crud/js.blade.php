@@ -19,6 +19,7 @@
             type: "GET",
             dataType: "json",
             success: function (result) {
+                console.log(result);
                 // console.log(result);
                 setData(result);
             },

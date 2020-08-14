@@ -13,7 +13,8 @@ class KabupatenSeeder extends Seeder
     public function run()
     {
         Kabupaten::create([
-            'nama'  => 'Belum di Isi',   
+            'nama'  => 'Belum di Isi', 
+            'kabupaten_id'  => 1,   
     ]);
     }
 }

@@ -14,7 +14,9 @@ class KecamatanSeeder extends Seeder
     public function run()
     {
         Kecamatan::create([
-            'nama'  => 'Belum di Isi',   
+            'nama'  => 'Belum di Isi',
+            'kabupaten_id' => 1, 
+            'jenis' => "Tidak Ada",   
     ]);
     }
 }
