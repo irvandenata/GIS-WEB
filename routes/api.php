@@ -1,5 +1,6 @@
 <?php
 
+use App\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,10 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
     // Route::resource('wilayah/kabupaten/api','Wilayah\KabupatenController');
     // Route::get('wilayah/kabupaten/api/search/{field}/{query}','Wilayah\KabupatenController@search');
 
+});
+
+
+Route::get('/ambildata',function(){
+    $asset = Asset::all();
+    return $asset;
 });

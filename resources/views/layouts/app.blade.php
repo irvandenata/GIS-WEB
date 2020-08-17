@@ -34,13 +34,15 @@
     @include('layouts.partial.sidebar')
   
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="margin-top: 0px;">
+    <div class="content-wrapper" >
 
      
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header" style="
+        padding-bottom: 0px;
+    ">
           <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="row ">
             
               
             </div>
@@ -48,7 +50,7 @@
         </section>
       
         <!-- Main content -->
-        <section class="content">
+        <section class="content " >
           @yield('content')
           <!-- /.container-fluid -->
         </section>

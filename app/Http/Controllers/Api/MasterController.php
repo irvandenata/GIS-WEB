@@ -10,9 +10,33 @@ use Illuminate\Http\Request;
 
 class MasterController extends Controller
 {
-    public function index()
-    {
-        return new MasterCollection(Asset::all());
+   
 
+    public function index(Request $request)
+    {
+        $places = Asset::all();
+        
+
+        $geoJSONdata = $places->map(function ($place) {
+            return [
+                'type'       => 'Feature',
+                'properties' => "dwdd",
+
+                'geometry'   => [
+                    'type'        => 'Point',
+                    'coordinates' => [
+                        $place->longitude,
+                        $place->latitude,
+                    ],
+                ],
+            ];
+        });
+
+        return response()->json([
+            'type'     => 'FeatureCollection',
+            'features' => $geoJSONdata,
+        ]);
     }
+
+
 }

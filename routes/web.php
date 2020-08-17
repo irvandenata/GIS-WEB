@@ -44,6 +44,9 @@ Route::group(['middleware'=>'auth'], function () {
      //controller for ekonomi
     // Route::resource('ekonomi', 'EkonomiController');
     //endekonomi
+
+
+    Route::resource('map', 'MapController');
 });
 
 

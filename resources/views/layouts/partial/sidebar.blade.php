@@ -36,9 +36,21 @@
                      
                     </li>
 
+
+                    <li class="nav-item ">
+                      <a href="{{route('map.index')}}" class="nav-link {{ Request::is('map') ? 'active' : (Request::is('/') ? 'active' : null) }}">
+                        <i class="nav-icon fas fa-globe-asia"></i>
+                        <p>
+                          Map
+                          
+                        </p>
+                      </a>
+                     
+                    </li>
+
                     <li class="nav-item ">
                       <a href="{{route('potensi.index')}}" class="nav-link {{ Request::is('potensi') ? 'active' : null }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-lightbulb"></i>
                         <p>
                           Data Potensi
                         </p>
@@ -48,7 +60,7 @@
                    
                     <li class="nav-item">
                     <a href="{{route('bangunan.index')}}" class="nav-link {{ Request::is('bangunan') ? 'active' : null }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-building"></i>
                         <p>
                           Banguanan 
                         </p>
@@ -57,7 +69,7 @@
                     
                     <li class="nav-item has-treeview {{ Request::is('wilayah/kabupaten') ? 'menu-open' :(Request::is('wilayah/kecamatan') ? 'menu-open' : (Request::is('wilayah/desa') ? 'menu-open' : null)) }} ">
                       <a href="#" class="nav-link {{ Request::is('wilayah/kabupaten') ? 'active' :(Request::is('wilayah/kecamatan') ? 'active' : (Request::is('wilayah/desa') ? 'active' : null)) }}">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="nav-icon fas fa-map"></i>
                         <p>
                           Data Wilayah
                           <i class="fas fa-angle-left right"></i>

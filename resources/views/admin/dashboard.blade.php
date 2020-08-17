@@ -12,9 +12,9 @@
 <div class="container-fluid">
     <!-- Info boxes -->
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-2 mr-5 ml-2">
+      <div class="col-12 col-sm-6 col-md-2 mr-4 ml-2">
         <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Ekonomi</span>
@@ -27,9 +27,9 @@
         <!-- /.info-box -->
       </div>
       <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-2 mr-5">
+      <div class="col-12 col-sm-6 col-md-2 mr-4">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-leaf"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Lingkungan</span>
@@ -44,9 +44,9 @@
       <!-- fix for small devices only -->
       <div class="clearfix hidden-md-up"></div>
 
-      <div class="col-12 col-sm-6 col-md-2 mr-5">
+      <div class="col-12 col-sm-6 col-md-2 mr-4">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-bolt"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Listrik</span>
@@ -57,9 +57,9 @@
         <!-- /.info-box -->
       </div>
       <!-- /.col -->
-      <div class="col-12 col-sm-6 col-md-2 mr-5">
+      <div class="col-12 col-sm-6 col-md-2 mr-4">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-gem"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Tambang</span>
@@ -72,7 +72,7 @@
       <!-- /.col -->
       <div class="col-12 col-sm-6 col-md-2 ">
         <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+          <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-people-arrows"></i></span>
 
           <div class="info-box-content">
             <span class="info-box-text">Sosial</span>
@@ -87,7 +87,7 @@
       <!-- DONUT CHART -->
       <div class="card card-danger ml-3">
         <div class="card-header">
-          <h3 class="card-title">Donut Chart</h3>
+          <h3 class="card-title">Chart Ekonomi</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>

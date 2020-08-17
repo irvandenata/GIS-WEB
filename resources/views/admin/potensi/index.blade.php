@@ -82,6 +82,7 @@
                         <th>Longitude</th>
                         <th>Deskripsi</th>
                         <th>Action</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
