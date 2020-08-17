@@ -10,9 +10,9 @@ class Asset extends Model
    
 
 
-    // public $appends = [
-    //     'coordinate', 'map_popup_content',
-    // ];
+    public $appends = [
+       'card_asset',
+    ];
 
 
     // public function getNameLinkAttribute()
@@ -64,14 +64,14 @@ class Asset extends Model
     //     }
     // }
 
-    // public function getMapPopupContentAttribute()
-    // {
-    //     $mapPopupContent = '';
-    //     // $mapPopupContent .= '<div class="my-2 "><div class="row justify-content-center"><img src="'. asset('assets/images/gambar.jpg') .'" width="150px" height="150px"></div></div>';
-    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Nama Tempat').':</strong><br>'.$this->nama.'</div>';
-    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Jenis').':</strong><br>'.Bangunan::find($this->bangunan_id)->nama.'</div>';
-    //     // $mapPopupContent .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
+    public function getCardAssetAttribute()
+    {
+        $cardAttribute = '';
+        $cardAttribute .= '<div class="row mb-2" onclick="showDetail()">';
+        $cardAttribute .= '<div class="col-3" style="background-color: black">data</div>';
+        $cardAttribute .= '<div class="col-9" style="background-color: yellow">aessefsefsefawdawdawdwadwad</div></div>';
+        // $card .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
 
-    //     return $mapPopupContent;
-    // }
+        return $cardAttribute;
+    }
 }

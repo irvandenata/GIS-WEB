@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
           <div class="form-group">
-              <label for="exampleInputUsername1">Nama Desa</label>
+              <label for="exampleInputUsername1">Nama</label>
               <input type="text" class="form-control" name="nama"  placeholder="Nama Tempat" required>
             </div>
         </div>
@@ -119,7 +119,7 @@
         
 </div>
     
-     
+</div>     
       
      
 {{-- <div class="form-group">

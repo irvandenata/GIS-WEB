@@ -7,6 +7,9 @@
 
     <link rel="stylesheet" href="{{ asset('assets/leaflet/leaflet.css') }}" />
 
+
+    <link href="../dist/searchbox.min.css" rel="stylesheet" />
+
 @endpush
 
 <script>
@@ -204,6 +207,11 @@
     <script src="{{ asset('assets/leaflet/leaflet.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
+
+
+    <script src="../dist/leaflet.customsearchbox.min.js"></script>
+
+
 @endpush
 
 @push('js')
@@ -216,13 +224,13 @@
         }
     });
     
-    var caffeIcon = new Icons({iconUrl: '{{asset('assets/img/caffe.png')}}'}),
-        officeIcon = new Icons({iconUrl: '{{asset('assets/img/office.png')}}'});
+    // var caffeIcon = new Icons({iconUrl: '{{asset('assets/img/caffe.png')}}'}),
+    //     officeIcon = new Icons({iconUrl: '{{asset('assets/img/office.png')}}'});
     
     
        
         
-        var kantor = L.layerGroup();
+        var listrik = L.layerGroup();
         var kafe = L.layerGroup();
     
     
@@ -234,51 +242,46 @@
     
     
     
-        axios.get('{{ route('api.place.index',['id' =>1]) }}')
+        axios.get('{{ route('api.potensi.show',3)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
            // console.log(response.data);
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
-                    return L.marker(latlng, {icon: officeIcon});
+                    return L.marker(latlng);
                 },  
             }
-            ).bindPopup(function (layer) {
-              
-                
-              return layer.feature.properties.map_popup_content;
-          })
-            .addTo(kantor);
+            ).addTo(listrik);
         })
         .catch(function (error) {
             console.log(error);
         });
     
-        axios.get('{{ route('api.place.index',['id' =>2]) }}')
-        .then(function (response) {
-            // console.log(response.data.features[0].properties.category_id);
-            //console.log(response.data);
-            L.geoJSON(response.data, {
-                pointToLayer: function(geoJsonPoint, latlng) {               
-                    return L.marker(latlng, {icon: caffeIcon});
-                },
-            })
-            .bindPopup(function (layer) {
+        // axios.get('{{ route('')
+        // .then(function (response) {
+        //     // console.log(response.data.features[0].properties.category_id);
+        //     //console.log(response.data);
+        //     L.geoJSON(response.data, {
+        //         pointToLayer: function(geoJsonPoint, latlng) {               
+        //             return L.marker(latlng, {icon: caffeIcon});
+        //         },
+        //     })
+        //     .bindPopup(function (layer) {
               
                 
-                return layer.feature.properties.map_popup_content;
-            }).addTo(kafe);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        //         return layer.feature.properties.map_popup_content;
+        //     }).addTo(kafe);
+        // })
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
        
     
        
     
     
        var map = L.map('mapid',{
-           layers: [kantor,kafe]
+           layers: [listrik,kafe]
        }).setView([ 0.0528716965978, 110.73120117187], 7);
         
     
@@ -293,11 +296,11 @@
     
         $("#kantor").click(function(event) {
         
-        if(map.hasLayer(kantor)) {
+        if(map.hasLayer(listrik)) {
             $(this).prop( "checked", false );
-            map.removeLayer(kantor);
+            map.removeLayer(listrik);
         } else {
-            map.addLayer(kantor);        
+            map.addLayer(listrik);        
             $(this).prop( "checked", true );
        }
     });
@@ -318,6 +321,44 @@
     map.on('popupopen', function(e) {
         map.setView(e.popup._latlng,20);
     } );
+
+
+
+    $(document).ready(function () {
+        
+        var map = L.map('map').setView([51.505, -0.09], 5);
+        map.zoomControl.setPosition('topright');
+        map.addLayer(new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {attribution:'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'}
+            ));
+	    
+        var searchboxControl=createSearchboxControl();
+        var control = new searchboxControl({
+            sidebarTitleText: 'Header',
+            sidebarMenuItems: {
+                Items: [
+                    { type: "link", name: "Link 1 (github.com)", href: "http://github.com", icon: "icon-local-carwash" },
+                    { type: "link", name: "Link 2 (google.com)", href: "http://google.com", icon: "icon-cloudy" },
+                    { type: "button", name: "Button 1", onclick: "alert('button 1 clicked !')", icon: "icon-potrait" },
+                    { type: "button", name: "Button 2", onclick: "button2_click();", icon: "icon-local-dining" },
+                    { type: "link", name: "Link 3 (stackoverflow.com)", href: 'http://stackoverflow.com', icon: "icon-bike" },
+                ]
+            }
+        });
+        control._searchfunctionCallBack = function (searchkeywords)
+        {
+            if (!searchkeywords) {
+                searchkeywords = "The search call back is clicked !!"
+            }
+            alert(searchkeywords);
+        }
+        map.addControl(control);
+    });
+    
+    function button2_click()
+    {
+        alert('button 2 clicked !!!');
+    }
     
     
     

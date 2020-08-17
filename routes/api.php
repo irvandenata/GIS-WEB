@@ -15,24 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
-    /*
-     * Outlets Endpoints
-     */
-    //Route::get('places', 'PlaceController@index')->name('place.index');
-    // Route:: get('data/kecamatan/{id}', 'DataSelectController@kecamatan')->name('ambil.kecamatan');
-    // Route:: get('data/kecamatan/{id}', 'DataSelectController@kecamatan')->name('ambil.kecamatan');
-    Route:: get('master/data', 'MasterController@index')->name('ambil.data');
-    // Route:: get('data/desa/{id}', 'DataSelectController@desa')->name('ambil.desa');
-        
-    // Route::resource('wilayah/kabupaten/api','Wilayah\KabupatenController');
-    // Route::get('wilayah/kabupaten/api/search/{field}/{query}','Wilayah\KabupatenController@search');
+   //Route:: get('master/data', 'MasterController@index')->name('ambil.data');
 
+   Route::apiResource('potensi','PotensiController');
 });
 
 
@@ -40,3 +31,7 @@ Route::get('/ambildata',function(){
     $asset = Asset::all();
     return $asset;
 });
+
+
+
+

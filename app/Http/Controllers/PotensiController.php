@@ -154,9 +154,9 @@ class PotensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asset $asset)
+    public function update(Request $request, $id)
     {
-        
+        $asset = Asset::find($id);
       $asset->update($request->all());
       return $asset;
     

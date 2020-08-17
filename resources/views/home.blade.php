@@ -195,7 +195,7 @@ var listrikIcon = new Icons({iconUrl: '{{asset('assets/images/listrik.png')}}'})
 
 
 
-    axios.get('{{ route('api.place.index') }}')
+    axios.get('')
     .then(function (response) {
         // console.log(response.data.features[0].properties.category_id);
        console.log(response.data);
@@ -216,7 +216,7 @@ var listrikIcon = new Icons({iconUrl: '{{asset('assets/images/listrik.png')}}'})
         console.log(error);
     });
 
-    // axios.get('{{ route('api.place.index',['id' =>2]) }}')
+    // axios.get('{{ route('')
     // .then(function (response) {
     //     // console.log(response.data.features[0].properties.category_id);
     //     //console.log(response.data);

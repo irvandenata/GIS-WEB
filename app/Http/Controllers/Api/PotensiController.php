@@ -4,39 +4,38 @@ namespace App\Http\Controllers\Api;
 
 use App\Asset;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MasterCollection;
-
+use App\Http\Resources\PotensiCollection;
+use App\Http\Resources\PotensiResource;
+use App\Potensi;
 use Illuminate\Http\Request;
 
-class MasterController extends Controller
+class PotensiController extends Controller
 {
-   
 
-    public function index(Request $request)
-    {
-        $places = Asset::all();
-        
+    /**
+     * @param Potensi $potensi
+     * @return PotensiResource 
+     */
+    public function show(Potensi $potensi){
 
-        $geoJSONdata = $places->map(function ($place) {
+        $geoJSONdata = $potensi->assets->map(function ($potensi) {
             return [
                 'type'       => 'Feature',
-                'properties' => "dwdd",
-
+                'properties' => new PotensiResource($potensi),
                 'geometry'   => [
                     'type'        => 'Point',
                     'coordinates' => [
-                        $place->longitude,
-                        $place->latitude,
+                        $potensi->longitude,
+                        $potensi->latitude,
                     ],
                 ],
             ];
         });
 
+        
         return response()->json([
             'type'     => 'FeatureCollection',
             'features' => $geoJSONdata,
         ]);
     }
-
-
 }

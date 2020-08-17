@@ -304,7 +304,7 @@ var url = '{{ route("datasel", ":id") }}';
     $('#lis').on('click',function(){
         $('.card-header h3').text("Listrik");
         $('input[name=potensi_id]').val(3);
-        datatable.ajax.url( child_url+"/data/"+3 ).load();
+        datatable.ajax.url( child_url+"/data/"+3).load();
         setSelect(3)
        
     });
