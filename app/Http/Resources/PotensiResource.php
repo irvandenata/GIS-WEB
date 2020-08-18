@@ -20,9 +20,15 @@ class PotensiResource extends JsonResource
         return [
             'nama' => $this->nama,
             'bangunan' => $this->bangunan->nama,
+            'kabupaten' => $this->kabupaten->nama,
+            'kecamatan' => "( ".$this->kecamatan->jenis." )".$this->kecamatan->nama,
+            'desa' => $this->desa->nama,
             'alamat' => $this->kabupaten->nama.$kecamatan.$desa,
             'deskripsi' => $this->deskripsi,
-            'card' => $this->card_asset,
+            'potensi' => $this->potensi->nama,
+            'item' => $this->potensi->nama,
+            'search' => '<li class="list-group-item"> <a onClick=goTo('.$this->latitude.','. $this->longitude.')>'.$this->nama.', '.$this->kabupaten->nama.$kecamatan.$desa.'</a></li>'    
+            
         ];
         
     }

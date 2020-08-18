@@ -24,6 +24,7 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
    //Route:: get('master/data', 'MasterController@index')->name('ambil.data');
 
    Route::apiResource('potensi','PotensiController');
+   
 });
 
 

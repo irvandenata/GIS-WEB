@@ -11,7 +11,7 @@ class Asset extends Model
 
 
     public $appends = [
-       'card_asset',
+       'search',
     ];
 
 
@@ -64,12 +64,11 @@ class Asset extends Model
     //     }
     // }
 
-    public function getCardAssetAttribute()
+    public function getSearchAttribute()
     {
         $cardAttribute = '';
-        $cardAttribute .= '<div class="row mb-2" onclick="showDetail()">';
-        $cardAttribute .= '<div class="col-3" style="background-color: black">data</div>';
-        $cardAttribute .= '<div class="col-9" style="background-color: yellow">aessefsefsefawdawdawdwadwad</div></div>';
+        $cardAttribute .= ' <li class="list-group-item">Desa Berlistrik, Temajok, Paloh, Sambas</li>';
+       
         // $card .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
 
         return $cardAttribute;

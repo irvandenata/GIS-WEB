@@ -301,6 +301,8 @@ var url = '{{ route("datasel", ":id") }}';
         }
     });
 
+    
+
     $('#lis').on('click',function(){
         $('.card-header h3').text("Listrik");
         $('input[name=potensi_id]').val(3);

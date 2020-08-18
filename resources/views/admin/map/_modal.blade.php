@@ -14,25 +14,25 @@
                 <div class="modal-body">
                  
                   
-                          <div class="text-center">
+                          {{-- <div class="text-center">
                             <img class="profile-user-img img-fluid img-circle"
                                  src=""
                                  alt="User profile picture">
-                          </div>
+                          </div> --}}
           
                           <h3 class="profile-username text-center">Desa Sudah Berlistrik</h3>
           
-                          <p class="text-muted text-center">Jagoi Babang</p>
+                          <p class="text-muted text-center"></p>
           
                           <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                              <b>Kabupaten</b> <a class="float-right">Sanggau</a>
+                              <b>Kabupaten</b> <a class="kab float-right"></a>
                             </li>
                             <li class="list-group-item">
-                              <b>Kecamatan</b> <a class="float-right">Jagoi</a>
+                              <b>Kecamatan</b> <a class="kec float-right"></a>
                             </li>
                             <li class="list-group-item">
-                              <b>Desa</b> <a class="float-right">Jagoi Babang</a>
+                              <b>Desa</b> <a class="des float-right"></a>
                             </li>
                             <li class="list-group-item" >
                                 <div class="row">
@@ -48,7 +48,7 @@
                               </li>
                           </ul>
           
-                          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                          
                        
                         <!-- /.card-body -->
                     
