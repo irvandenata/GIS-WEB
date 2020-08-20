@@ -5,7 +5,7 @@
           <div class="col-12">
             <div class="form-group">
                 <label for="exampleInputUsername1">Nama Desa</label>
-                <input type="text" class="form-control" name="nama"  placeholder="Nama Tempat" required>
+                <input type="text" class="form-control" name="nama"  placeholder="Nama Desa" required>
               </div>
           </div>
          

@@ -15,42 +15,43 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('admin.map.index');
 })->name('map');
 
 Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::resource('map', 'MapController');
 
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {
     /*
      * Outlets Endpoints
      */
-   
+
     Route::resource('bangunan', 'BangunanController');
-     Route::get('potensi/data/{id}', [
-    'as' => 'potensi.data',
-    'uses' => 'PotensiController@api'
+    Route::get('potensi/data/{id}', [
+        'as' => 'potensi.data',
+        'uses' => 'PotensiController@api'
     ]);
     Route::resource('potensi', 'PotensiController');
-    Route::get('potensi/datakec/{id}','PotensiController@kecamatan')->name('datakec');
-    Route::get('potensi/datades/{id}','PotensiController@desa')->name('datades');
-    Route::get('potensi/datasel/{id}','PotensiController@sel')->name('datasel');
-     //controller for listrik
+    Route::get('potensi/datakec/{id}', 'PotensiController@kecamatan')->name('datakec');
+    Route::get('potensi/datades/{id}', 'PotensiController@desa')->name('datades');
+    Route::get('potensi/datasel/{id}', 'PotensiController@sel')->name('datasel');
+    //controller for listrik
     //  Route::resource('listrik', 'ListrikController',['except' => 'index']);
     //  Route::get('listrik/datakec/{id}','ListrikController@kecamatan')->name('datakec');
     //  Route::get('listrik/datades/{id}','ListrikController@desa')->name('datades');
-     //endlistrik
-   
-     //controller for ekonomi
+    //endlistrik
+
+    //controller for ekonomi
     // Route::resource('ekonomi', 'EkonomiController');
     //endekonomi
 
 
-    Route::resource('map', 'MapController');
+    //Route::resource('map', 'MapController');
 });
 
 
-Route::group([ 'as'=>'wilayah.','namespace' => 'Wilayah','prefix'=>'wilayah','middleware'=>'auth'], function () {
+Route::group(['as' => 'wilayah.', 'namespace' => 'Wilayah', 'prefix' => 'wilayah', 'middleware' => 'auth'], function () {
     /*
      * Outlets Endpoints
      */
@@ -58,5 +59,7 @@ Route::group([ 'as'=>'wilayah.','namespace' => 'Wilayah','prefix'=>'wilayah','mi
     Route::resource('kabupaten', 'KabupatenController');
     Route::resource('kecamatan', 'KecamatanController');
     Route::resource('desa', 'DesaController');
-   //endwilayah  
+
+
+    //endwilayah  
 });

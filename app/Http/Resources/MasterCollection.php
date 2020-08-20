@@ -15,11 +15,7 @@ class MasterCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-                    'nama' => $this->nama,
-                    
-                    
-               
-        
+            $this->nama
         ];
     }
 }

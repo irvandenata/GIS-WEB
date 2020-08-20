@@ -21,18 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
-   //Route:: get('master/data', 'MasterController@index')->name('ambil.data');
+    //Route:: get('master/data', 'MasterController@index')->name('ambil.data');
 
-   Route::apiResource('potensi','PotensiController');
-   
+    Route::apiResource('potensi', 'PotensiController');
 });
 
 
-Route::get('/ambildata',function(){
+Route::get('/ambildata', function () {
     $asset = Asset::all();
     return $asset;
 });
-
-
-
-

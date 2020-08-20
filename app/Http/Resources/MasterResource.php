@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Master extends JsonResource
+class MasterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,8 @@ class Master extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return
+            //'jumlah' => $this->assets->count()
+            $this->nama;
     }
 }

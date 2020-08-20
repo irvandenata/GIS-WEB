@@ -131,7 +131,7 @@
     }
 
     function editItem(id) {
-        setForm('update','PUT','Edit Kabupaten',true)
+        setForm('update','PUT','Edit Kecamatan',true)
         editData(id)
     }
     

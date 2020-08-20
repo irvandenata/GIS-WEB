@@ -9,7 +9,7 @@
         <div class="col-12">
           <div class="form-group">
               <label for="exampleInputUsername1">Nama</label>
-              <input type="text" class="form-control" name="nama"  placeholder="Nama Tempat" required>
+              <input type="text" class="form-control" name="nama"  placeholder="Nama" required>
             </div>
         </div>
         <div class="col-6">
@@ -17,7 +17,7 @@
 
           
 <div class="form-group">
-  <label for="type">Bangunan</label>
+  <label for="type">Jenis</label>
       <select class="form-control show-tick" name="bangunan_id" id="bangID" required>
           <option disabled selected value>---- Pilih Salah Satu ----</option>
           @foreach ($bangunan as $item)

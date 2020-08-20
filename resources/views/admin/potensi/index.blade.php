@@ -74,7 +74,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Bangunan</th>
+                        <th>Jenis</th>
                         <th>Kabupaten</th>
                         <th>Kecamatan</th>
                         <th>Desa</th>
@@ -158,11 +158,11 @@ var  api = "/data/1";
 
   
     function createItem() {
-        setForm('create','POST','Tambah Kecamatan',true)
+        setForm('create','POST','Tambah Potensi',true)
     }
 
     function editItem(id) {
-        setForm('update','PUT','Edit Kecamatan',true)
+        setForm('update','PUT','Edit Potensi',true)
         editData(id)
     }
     

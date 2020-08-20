@@ -27,11 +27,11 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data Seluruh Desa</h3>
+              <h3 class="card-title">Data Seluruh Jenis Pada Potensi</h3>
               <div class="card-tools" style="position: absolute;right: 1rem;top: .5rem;">
                 <a class="btn btn-sm btn-success" onclick="createItem()">
                   <div class="demo-google-material-icon">
-                      <span class="text-white">Tambahkan Desa</span>
+                      <span class="text-white">Tambahkan Jenis</span>
                   </div>
               </a>
             </div>
@@ -114,11 +114,11 @@
 
   
     function createItem() {
-        setForm('create','POST','Tambah Kecamatan',true)
+        setForm('create','POST','Tambah Jenis Pada Potensi',true)
     }
 
     function editItem(id) {
-        setForm('update','PUT','Edit Kecamatan',true)
+        setForm('update','PUT','Edit Jenis Pada Potensi',true)
         editData(id)
     }
     

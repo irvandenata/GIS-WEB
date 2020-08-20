@@ -14,22 +14,21 @@ class PotensiResource extends JsonResource
      */
     public function toArray($request)
     {
-        
-        $kecamatan = ($this->kecamatan->nama != "Belum di Isi")? ', '.$this->kecamatan->nama:'';
-        $desa = ($this->desa->nama != "Belum di Isi")? ', Kecamatan '.$this->desa->nama:'';
+
+        $kecamatan = ($this->kecamatan->nama != "Belum di Isi") ? ', ' . $this->kecamatan->nama : '';
+        $desa = ($this->desa->nama != "Belum di Isi") ? ', Kecamatan ' . $this->desa->nama : '';
         return [
             'nama' => $this->nama,
             'bangunan' => $this->bangunan->nama,
             'kabupaten' => $this->kabupaten->nama,
-            'kecamatan' => "( ".$this->kecamatan->jenis." )".$this->kecamatan->nama,
+            'kecamatan' => "( " . $this->kecamatan->jenis . " )" . $this->kecamatan->nama,
             'desa' => $this->desa->nama,
-            'alamat' => $this->kabupaten->nama.$kecamatan.$desa,
+            'alamat' => $this->kabupaten->nama . $kecamatan . $desa,
             'deskripsi' => $this->deskripsi,
             'potensi' => $this->potensi->nama,
             'item' => $this->potensi->nama,
-            'search' => '<li class="list-group-item"> <a onClick=goTo('.$this->latitude.','. $this->longitude.')>'.$this->nama.', '.$this->kabupaten->nama.$kecamatan.$desa.'</a></li>'    
-            
+            'search' => '<a class="list-group-item list-group-item-action" onClick=goTo(' . $this->latitude . ',' . $this->longitude . ')>' . $this->nama . ', ' . $this->kabupaten->nama . $kecamatan . $desa . '</a>'
+
         ];
-        
     }
 }

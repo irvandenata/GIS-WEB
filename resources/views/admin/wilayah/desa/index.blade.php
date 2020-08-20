@@ -127,11 +127,11 @@
 
   
     function createItem() {
-        setForm('create','POST','Tambah Kecamatan',true)
+        setForm('create','POST','Tambah Desa',true)
     }
 
     function editItem(id) {
-        setForm('update','PUT','Edit Kecamatan',true)
+        setForm('update','PUT','Edit Desa',true)
         editData(id)
     }
     

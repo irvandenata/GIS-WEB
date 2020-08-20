@@ -5,13 +5,13 @@
           <div class="col-12">
             <div class="form-group">
                 <label for="exampleInputUsername1">Nama Kecamatan</label>
-                <input type="text" class="form-control" name="nama"  placeholder="Nama Tempat" required>
+                <input type="text" class="form-control" name="nama"  placeholder="Nama Kecamatan" required>
               </div>
           </div>
           <div class="col-6">
             <div class="form-group">
                 <label for="exampleInputUsername1">Jenis (cnth : Sektor 1)</label>
-                <input type="text" class="form-control" name="jenis"  placeholder="Nama Tempat" required>
+                <input type="text" class="form-control" name="jenis"  placeholder="Jenis" required>
               </div>
           </div>
          

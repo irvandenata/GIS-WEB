@@ -1,220 +1,238 @@
 @extends('layouts.app')
-
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/leaflet/leaflet.css') }}" />
-
  <link rel="stylesheet" href="{{  asset('assets/dist/css/skins/_all-skins.min.css') }}">
-
-
 @endpush
-
 <script>
-
     function showDetail(){
         $('#modalForm').modal('show');
     }
-    
 </script>
-
 @push('css')
-
     <style>
-
-.content-wrapper{max-height: 163px;
-
-padding-bottom: -100px;
-}
-    
+        
+        .icon-image{
+            height: 20px;
+            width: 20px;
+        }
         .ting {
-
             min-height: 75.5vh;
         }
-
-        .scroll {
-   height: 30.5vh;
-   width: 100%; 
-    overflow-y: auto;
-}
-
     </style>
 @endpush
-@section('content')
-    <!-- Content Wrapper. Contains page content -->
-
-
-    <!-- Main content -->
-
-    <div class="container-fluid" style="min-height: 511px;padding-bottom: 0px;">
-
-        <div class="row ">
-            <div class="col-3">
-                <div class="card ">
-                    
-                    <!-- /.card-header -->
-                    <div class="card-body ">
-                        <form class="form">
-                            <div class="row ">
-                                <div class="col-12">
-                                    <!-- select -->
-                                    <div class="form-group">
-                                        <label>Pilih Jenis Potensi</label>
-                                        <select class="form-control">
-                                            <option disabled selected value>---- Pilih Salah Satu ----</option>
-                                            <option value="1">Ekonomi</option>
-                                            <option value="2">Lingkungan</option>
-                                            <option value="3">Listrik</option>
-                                            <option value="4">Tambang</option>
-                                            <option value="5">Sosial</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <!-- select -->
-                                    <div class="form-group " style="z-index:999">
-                                    <div id="myDropdown" class="dropdown-content">
-                                            <input class="form-control " type="text" placeholder="Cari disini ..."  id="myInput">
-                                            <ul class="list-group" id="myList" style="z-index: 100;" >
-                                               {{-- <li class="list-group-item">Desa Berlistrik, Temajok, Paloh, Sambas</li> --}}
-                                               
-                                            </ul>  
-                                        </div>
-                                        
-                                       
-                                    </div>
-
-                                    
-                                </div>
-                                
-                                
-
-                               
-                            </div>
-                          </form>
-                          
-                    </div>
-                </div>
-                
-                 <div class="card ">
-                    
-                    <!-- /.card-header -->
-                     <div class="card-header ">
-                     <label>Jenis Potensi</label>
-                     </div>
-                    <div class="card-body ">
+@section('topbar')
+<nav class="main-header p-3">
+  
+        <div class="row justify-content-end ">
+            <div class="col-2">
+                <select class="form-control mr-2" id="cariPotensi">
+                    <option disabled selected value>---- Pilih Potensi ----</option>
+                    <option value="1">Ekonomi</option>
+                    <option value="2">Lingkungan</option>
+                    <option value="3">Listrik</option>
+                    <option value="4">Tambang</option>
+                    <option value="5">Sosial</option>
+                </select>
+            </div>
+            <div class="col-2 mr-2">
+                <div id="myDropdown" class="dropdown-content">
+                    <input class="form-control " type="text" placeholder="Cari disini ..."  id="myInput">
+                    <div class="list-group" id="myList" style="z-index: 10; position: absolute;" >
+                       {{-- <li class="list-group-item">Desa Berlistrik, Temajok, Paloh, Sambas</li> --}}
                        
-                 <input id="ekonomi" type="checkbox" class="flat-green"  checked>
-                <label>
-                
-                  Ekonomi 
-                </label>
-               <br>
-                
-                 <input id="lingkungan"  type="checkbox" class="flat-red" checked>
-                <label>   
-                  Lingkungan
-                </label>
-              <br>
-                
-                 <input id="listrik" type="checkbox" class="flat-red" checked>
-                <label>
-                  Listrik
-                </label>
-              <br>
-              
-                 <input id="tambang" type="checkbox" class="flat-red" checked>
-                <label>
-                  Tambang
-                </label>
-               <br>
-                 <input id="sosial" type="checkbox" class="flat-red" checked>
-                <label>
-                  Sosial
-                </label>
-            
-                          
-                    </div>
+                    </div>  
                 </div>
             </div>
+        </div>
+  
+  
+      <!-- Right navbar links -->
+   
+    
+  </nav>
+@endsection
+@section('content')
+    <div class="container-fluid" style="min-height: 511px;padding-bottom: 0px;">
+        <div class="row ">
+            <div class="col-3">
+                <div class="card card-info">
+                    <div class="card-header">
+                      <h3 class="card-title">Informasi Simbol</h3>
+                    </div>
+                    <div class="card-body">
+                        {{-- chart start --}}
+                        <div class="row">
+                            <div class="col-12">
+
+                             
+                                <ul class="list-group" data-widget="todo-list">
+                                    <li class="list-group-item p-1 pl-2" style="padding: 0;">
+                                        <!-- checkbox -->   
+                                          <input type="checkbox" value="" name="todo1" id="ekonomi" checked>
+                                        <span class="text">Ekonomi</span>
+                                        <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" class="img-thumbnail icon-image mb-1 ml-4 float-right">
+                                      </li>
+                                      <li class="list-group-item p-1 pl-2" style="padding: 0;">
+                                        <!-- checkbox -->
+                                       
+                                          <input type="checkbox" value="" name="todo1" id="lingkungan" checked>
+                                        <span class="text">Lingkungan</span>
+                                        <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" class="img-thumbnail icon-image mb-1 ml-4 float-right">
+                                      </li>
+                                      <li class="list-group-item p-1 pl-2" style="padding: 0;">
+                                        <!-- checkbox -->
+                                       
+                                          <input type="checkbox" value="" name="todo1" id="listrik" checked>
+                                          <label for="todoCheck1"></label>
+                                        <span class="text">Listrik</span>
+                                        <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" class="img-thumbnail icon-image mb-1 ml-4 float-right">
+                                      </li>
+                                      <li class="list-group-item p-1 pl-2" style="padding: 0;">
+                                        <!-- checkbox -->
+                                       
+                                          <input type="checkbox" value="" name="todo1" id="tambang" checked>
+                                          <label for="todoCheck1"></label>
+                                        
+                                        <!-- todo text -->
+                                        <span class="text">Tambang</span>
+                                        <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" class="img-thumbnail icon-image mb-1 ml-4 float-right">
+                                      </li>
+                                      <li class="list-group-item p-1 pl-2" style="padding: 0;">
+                                        <!-- checkbox -->
+                                       
+                                          <input type="checkbox" value="" name="todo1" id="sosial" checked>
+                                          <label for="todoCheck1"></label>
+                                        
+                                        <!-- todo text -->
+                                        <span class="text">Sosial</span>
+                                        <img src="{{asset('assets/dist/img/AdminLTELogo.png')}}" class="img-thumbnail icon-image mb-1 ml-4 float-right">
+                                      </li>
+                                      
+                                     
+                                   
+                                  </ul>
+                              
+                               
+                                
+                            </div>
+                        </div>
+                      {{-- chart end --}}
+
+                      
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+
+                  <div class="card card-info">
+                    <div class="card-header">
+                      <h3 class="card-title">Jumlah Potensi</h3>
+                    </div>
+                    <div class="card-body">
+                        {{-- chart start --}}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="chart">
+                                    <canvas id="stackedBarChart" style="min-height: 200px; height: 200px; max-height: 200px; max-width: 100%;"></canvas>
+                                  </div>
+                            </div>
+                        </div>
+                      {{-- chart end --}}
+
+                      
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+            </div>
             <div class="col-9">
-                <div id="mapid" class="ting"></div>
+                <div id="mapid" class="ting" style="z-index: 0;"></div>
             </div>
         </div>
 
     </div>
-
-    <!-- /.container-fluid -->
-
-    <!-- /.content -->
     @include('admin.map._modal')
 @endsection
-
-
 @push('scripts')
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
-
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/leaflet/leaflet.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-
-
-
-    
-
-
+    <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
 @endpush
-
 @push('js')
     {{-- @include('crud.js') --}}
     <script>
-
-
-
-
-
-
-
-
-
-
-
        var Icons = L.Icon.extend({
         options: {
             iconSize: [25, 25],
             popupAnchor:  [0, -20],
-            
         }
     });
-    
     var ekonomiIcon = new Icons({iconUrl: '{{asset('assets/img/ekonomi.png')}}'}),
         lingkunganIcon = new Icons({iconUrl: '{{asset('assets/img/lingkungan.png')}}'}),
         listrikIcon = new Icons({iconUrl: '{{asset('assets/img/listrik.png')}}'}),
         tambangIcon = new Icons({iconUrl: '{{asset('assets/img/tambang.png')}}'}),
-        sosialIcon = new Icons({iconUrl: '{{asset('assets/img/sosial.png')}}'});
-    
-    
-       
+        sosialIcon = new Icons({iconUrl: '{{asset('assets/img/sosial.png')}}'}); 
         var ekonomi = L.layerGroup();
         var lingkungan = L.layerGroup();
         var listrik = L.layerGroup();
         var tambang = L.layerGroup();
         var sosial = L.layerGroup();
+        var searchLis, searchEko, searchLin, searchTam,searchSos;
+        var dataGrafik = [];
+        axios.get('{{ route('api.potensi.index')}}')
+        .then(function(e){
+            
+           
+            dataGrafik = e.data;
+            console.log(dataGrafik)
 
-        
+            var donutData        = {
+      labels:  dataGrafik.nama,
+      datasets: [
+        {
+          data: dataGrafik.jumlah,
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc'],
+        }
+      ]
+    }
     
-    
-    
-        
-    
-    
+var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = jQuery.extend(true, {}, donutData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+  
+    var stackedBarChart = new Chart(stackedBarChartCanvas, {
+      type: 'bar', 
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+           
+            
+                 }
+                );
         axios.get('{{ route('api.potensi.show',1)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
            //console.log(response.data);
+           searchEko = response.data.features;
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
                     return L.marker(latlng,{icon: ekonomiIcon}).on('click', onClick);
@@ -226,14 +244,11 @@ padding-bottom: -100px;
             console.log(error);
         });
 
-        
-
-
-
         axios.get('{{ route('api.potensi.show',2)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
            // console.log(response.data);
+           searchLin = response.data.features;
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
                     return L.marker(latlng,{icon: sosialIcon}).on('click', onClick);
@@ -245,19 +260,14 @@ padding-bottom: -100px;
         .catch(function (error) {
             console.log(error);
         });
-
-
-
-
+        var searchLis;
         axios.get('{{ route('api.potensi.show',3)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
-           
-           response.data.features.forEach(function(e){
-               console.log(e.properties.search);
-               $("#myList").append(e.properties.search);
-           });
+            searchLis = response.data.features;
+            
           
+           
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
                     return L.marker(latlng,{icon: listrikIcon}).on('click', onClick);
@@ -272,12 +282,11 @@ padding-bottom: -100px;
             console.log(error);
         });
 
-
-
         axios.get('{{ route('api.potensi.show',4)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
            // console.log(response.data);
+           searchTam = response.data.features;
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
                     return L.marker(latlng,{icon: lingkunganIcon}).on('click', onClick);
@@ -289,13 +298,11 @@ padding-bottom: -100px;
             console.log(error);
         });
 
-
-
-
         axios.get('{{ route('api.potensi.show',5)}}')
         .then(function (response) {
             // console.log(response.data.features[0].properties.category_id);
            // console.log(response.data);
+           searchSos = response.data.features;
             L.geoJSON(response.data, {
                 pointToLayer: function(geoJsonPoint, latlng) {   
                     return L.marker(latlng,{icon: sosialIcon}).on('click', onClick);
@@ -326,10 +333,6 @@ padding-bottom: -100px;
         //     console.log(error);
         // });
        
-    
-       
-    
-    
        var map = L.map('mapid',{
            layers: [ekonomi,lingkungan,listrik,tambang,sosial]
        }).setView([ 0.0528716965978, 110.73120117187], 7);
@@ -338,11 +341,6 @@ padding-bottom: -100px;
         var title = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
-    
-      
-        
-    
-      
     
         $("#ekonomi").click(function(event) {
         
@@ -365,7 +363,6 @@ padding-bottom: -100px;
             $(this).prop( "checked", true );
        }
     });
-
 
     $("#listrik").click(function(event) {
         
@@ -400,15 +397,9 @@ padding-bottom: -100px;
        }
     });
     
-    
-    
     map.on('click', function(e) {
         map.setView(e.popup._latlng,20);
     } );
-
-
-
-
 
  function onClick(e){
      
@@ -422,16 +413,8 @@ padding-bottom: -100px;
         $('textarea[name=deskripsi]').val(e.target.feature.properties.deskripsi);
         $('#modalFormTitle').text("Potensi "+e.target.feature.properties.potensi);
 
-        $('#modalForm').modal('show');  
-        
-   
+        $('#modalForm').modal('show');    
  }
-
-
-
-
-  
-
 
 
 function goTo(lat,lng){
@@ -440,25 +423,110 @@ function goTo(lat,lng){
 
 
 
-
-
 function searching(value){
-     $("#myList li").filter(function() {
+   
+     $("#myList a").filter(function() {
+        
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
 }
- $(document).ready(function(){
-     
-     
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    (value != '' )? searching(value) : searching('xxxxxx');
-   
-  });
-  
-});
-    
+
+// $(document).ready(function(){
+//     $("#myInput").on('keyup',function(){
+ 
+// });
+// });
+
+    function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+           $('select[id="cariPotensi"]').on('change', function() {
+                
+            const list = document.querySelector('#myList');
+            removeAllChildNodes(list);
+            var potensi = $(this).val();
+            if(potensi == 1){
+            $("#myInput").on("keypress", function() {
+                console.log()
+                removeAllChildNodes(list);
+                searchEko.forEach(
+                function (e){
+                            // console.log(e.properties.search)
+                            $("#myList").append(e.properties.search)
+                        }
+                    );
+                });
+                var value = $(this).val().toLowerCase();
+                    (value != '')? searching(value) : searching('xxxxxx');
+            }
+            else if(potensi == 2){
+            $("#myInput").on("keyup", function() {
+                removeAllChildNodes(list);
+                searchLin.forEach(
+                function (e){
+                    // console.log(e.properties.search)
+                    $("#myList").append(e.properties.search)
+                }
+            );
+                var value = $(this).val().toLowerCase();
+                (value != '' )? searching(value) : searching('xxxxxx');
+            });
+         }
+         else if(potensi == 3){
+            $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+               
+                removeAllChildNodes(list);
+                searchLis.forEach(
+                function (e){
+                    // console.log(e.properties.search)
+                    $("#myList").append(e.properties.search)
+                }
+            );
+                var value = $(this).val().toLowerCase();
+                (value != '' )? searching(value) : searching('xxxxxx');
+                
+            });
+         });
+         }
+         else if(potensi == 4){
+            $("#myInput").on("keyup", function() {
+                
+                removeAllChildNodes(list);
+                searchTam.forEach(
+                function (e){
+                    // console.log(e.properties.search)
+                    $("#myList").append(e.properties.search)
+                }
+            );
+            var value = $(this).val().toLowerCase();
+            (value != '' )? searching(value) : searching('xxxxxx');
+            });
+         }
+         else if(potensi == 5){
+            $("#myInput").on("keyup", function() {
+                removeAllChildNodes(list);
+                searchSos.forEach(
+                function (e){
+                    // console.log(e.properties.search)
+                    $("#myList").append(e.properties.search)
+                }
+            );
+                var value = $(this).val().toLowerCase();
+                (value != '' )? searching(value) : searching('xxxxxx');
+         });
+         }
+
+           
             
+     
+  
+        
+    });
+ 
     </script>
 
 
