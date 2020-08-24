@@ -43,7 +43,7 @@
                     <div class="list-group" id="myList" style="z-index: 10; position: absolute;" >
                        {{-- <li class="list-group-item">Desa Berlistrik, Temajok, Paloh, Sambas</li> --}}
                        
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
