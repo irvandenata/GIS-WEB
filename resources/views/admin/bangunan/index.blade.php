@@ -44,6 +44,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Potensi</th>
+                        <th>icon</th>
                         <th>Action</th>
                         
                     </tr>
@@ -108,6 +109,7 @@
           {data:'DT_RowIndex',orderable:false},
           {data:'nama',orderable:true},
           {data:'potensi',orderable:true},
+          {data:'icon',orderable:true},
           {data:'action',name:'#',orderable:false},
       ]
   });

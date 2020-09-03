@@ -21,21 +21,21 @@ class PotensiController extends Controller
      */
     public function index()
     {
-       
-        $bangunan = Bangunan::where('potensi_id','=',1)->select('id','nama')->get();
-        
-        $kab = Kabupaten::select('id','nama')->get();
-        $kec = Kecamatan::select('id','nama')->get();
-        $desa = Desa::select('id','nama')->get();
-        
-        return view('admin.potensi.index',compact('bangunan','kab','kec','desa'));
+
+        $bangunan = Bangunan::where('potensi_id', '=', 1)->select('id', 'nama')->get();
+
+        $kab = Kabupaten::select('id', 'nama')->get();
+        $kec = Kecamatan::select('id', 'nama')->get();
+        $desa = Desa::select('id', 'nama')->get();
+
+        return view('admin.potensi.index', compact('bangunan', 'kab', 'kec', 'desa'));
     }
 
 
-    public function api(Request $request,$id)
+    public function api(Request $request, $id)
     {
         if ($request->ajax()) {
-            $assets = Asset::where("potensi_id",'=',$id)->get();
+            $assets = Asset::where("potensi_id", '=', $id)->get();
             return DataTables::of($assets)
                 ->addColumn('action', function ($asset) {
                     return '
@@ -46,7 +46,7 @@ class PotensiController extends Controller
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $asset->id . ')" >Delete</span></a>
                                 </div>';
                 })
-               
+
                 ->addColumn('bangunan', function ($asset) {
                     return $asset->bangunan->nama;
                 })
@@ -59,7 +59,7 @@ class PotensiController extends Controller
                 ->addColumn('desa', function ($asset) {
                     return $asset->desa->nama;
                 })
-                
+
                 ->removeColumn('potensi_id')
                 ->removeColumn('bangunan_id')
                 ->removeColumn('kabupaten_id')
@@ -69,34 +69,33 @@ class PotensiController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        
     }
-    
-    
+
+
 
 
     public function kecamatan($id)
     {
-      $kecamatan = Kecamatan::where("kabupaten_id","=",$id)
-                    ->pluck("nama","id");
-      return json_encode($kecamatan);
+        $kecamatan = Kecamatan::where("kabupaten_id", "=", $id)
+            ->pluck("nama", "id");
+        return json_encode($kecamatan);
     }
     public function desa($id)
     {
-      $desa = Desa::where("kecamatan_id","=",$id)
-                    ->pluck("nama","id");
-      return json_encode($desa);
+        $desa = Desa::where("kecamatan_id", "=", $id)
+            ->pluck("nama", "id");
+        return json_encode($desa);
     }
 
     public function sel($id)
     {
-      $sel = Potensi::find($id)->bangunans
-      ->pluck("nama","id");
-      return json_encode($sel);
+        $sel = Potensi::find($id)->bangunans
+            ->pluck("nama", "id");
+        return json_encode($sel);
     }
-    
 
-    
+
+
 
 
 
@@ -108,7 +107,6 @@ class PotensiController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -118,8 +116,8 @@ class PotensiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Asset $asset)
-    {   
-        
+    {
+
         $asset->create($request->all());
         return $asset;
     }
@@ -132,7 +130,6 @@ class PotensiController extends Controller
      */
     public function show($id)
     {
-       
     }
 
     /**
@@ -157,9 +154,8 @@ class PotensiController extends Controller
     public function update(Request $request, $id)
     {
         $asset = Asset::find($id);
-      $asset->update($request->all());
-      return $asset;
-    
+        $asset->update($request->all());
+        return $asset;
     }
 
     /**

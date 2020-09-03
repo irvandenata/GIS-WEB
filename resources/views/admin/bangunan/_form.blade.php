@@ -2,7 +2,7 @@
 @section('input-form')
 
       <div class="row">
-          <div class="col-12">
+          <div class="col-12 ">
             <div class="form-group">
                 <label for="exampleInputUsername1">Nama</label>
                 <input type="text" class="form-control" name="nama"  placeholder="Nama Jenis" required>
@@ -25,6 +25,16 @@
             @endforeach
         </select>
 </div>
+
+
+<div class="form-group">
+  <label for="type">Lambang</label>
+
+    <input type="file" name="icon" class="form-control">
+  
+</div>
+
+
 
         </div>
       </div>

@@ -41,15 +41,15 @@ class PotensiController extends Controller
     public function show(Potensi $potensi)
     {
 
-        $geoJSONdata = $potensi->assets->map(function ($potensi) {
+        $geoJSONdata = $potensi->assets->map(function ($asset) {
             return [
                 'type'       => 'Feature',
-                'properties' => new PotensiResource($potensi),
+                'properties' => new PotensiResource($asset),
                 'geometry'   => [
                     'type'        => 'Point',
                     'coordinates' => [
-                        $potensi->longitude,
-                        $potensi->latitude,
+                        $asset->longitude,
+                        $asset->latitude,
                     ],
                 ],
             ];

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Bangunan;
 use App\Potensi;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\File;
 
 class BangunanController extends Controller
 {
@@ -28,21 +30,16 @@ class BangunanController extends Controller
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $asset->id . ')" >Delete</span></a>
                                 </div>';
                 })
-               
                 ->addColumn('potensi', function ($asset) {
                     return $asset->potensi->nama;
                 })
-                
-                
                 ->removeColumn(' id')
-
-               
                 ->addIndexColumn()
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        $potensi=Potensi::select('id','nama')->get();
-        return view('admin.bangunan.index',compact('potensi'));
+        $potensi = Potensi::select('id', 'nama')->get();
+        return view('admin.bangunan.index', compact('potensi'));
     }
 
     /**
@@ -52,7 +49,6 @@ class BangunanController extends Controller
      */
     public function create()
     {
-       
     }
 
     /**
@@ -61,10 +57,25 @@ class BangunanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Bangunan $bangunan)
+    public function store(Request $request, Bangunan $bangunan)
     {
-       $bangunan = Bangunan::create($request->all());
-       return $bangunan;
+
+        $bangunan = Bangunan::create($request->except('icon'));
+        if ($request->hasFile('icon')) {
+            // Mengambil file yang diupload
+            $uploaded_icon = $request->file('icon');
+            // mengambil extension file
+            $extension = $uploaded_icon->getClientOriginalExtension();
+            // membuat nama file random berikut extension
+            $filename = md5(time()) . '.' . $extension;
+            // menyimpan icon ke folder public/img
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'assets/leaflet/icon';
+            $uploaded_icon->move($destinationPath, $filename);
+            // mengisi field icon di bangunan dengan filename yang baru dibuat
+            $bangunan->icon = $filename;
+            $bangunan->save();
+        }
+        return $bangunan;
     }
 
     /**
@@ -75,7 +86,6 @@ class BangunanController extends Controller
      */
     public function show(Bangunan $bangunan)
     {
-       
     }
 
     /**
@@ -86,7 +96,7 @@ class BangunanController extends Controller
      */
     public function edit(Bangunan $bangunan)
     {
-       return $bangunan;
+        return $bangunan;
     }
 
     /**
@@ -98,8 +108,32 @@ class BangunanController extends Controller
      */
     public function update(Request $request, Bangunan $bangunan)
     {
-       $bangunan->update($request->all());
-       return $bangunan;
+        $bangunan->update($request->all());
+        if ($request->hasFile('icon')) {
+            // menambil icon yang diupload berikut ekstensinya
+            $filename = null;
+            $uploaded_icon = $request->file('icon');
+            $extension = $uploaded_icon->getClientOriginalExtension();
+            // membuat nama file random dengan extension
+            $filename = md5(time()) . '.' . $extension;
+            $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'assets/leaflet/icon';
+            // memindahkan file ke folder public/img
+            $uploaded_icon->move($destinationPath, $filename);
+            // hapus icon lama, jika ada
+            if ($bangunan->icon) {
+                $old_icon = $bangunan->icon;
+                $filepath = public_path() . DIRECTORY_SEPARATOR . 'img'
+                    . DIRECTORY_SEPARATOR . $bangunan->icon;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // File sudah dihapus/tidak ada
+                }
+            }
+        }
+        $bangunan->save();
+
+        return $bangunan;
     }
 
     /**
@@ -110,6 +144,16 @@ class BangunanController extends Controller
      */
     public function destroy(Bangunan $bangunan)
     {
+
+        if ($bangunan->icon) {
+            $old_icon = $bangunan->icon;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'assets/leaflet/icon' . DIRECTORY_SEPARATOR . $bangunan->icon;
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
         $bangunan->delete();
         return response()->json(['message', 'deleted success']);
     }

@@ -26,6 +26,7 @@ class PotensiResource extends JsonResource
             'alamat' => $this->kabupaten->nama . $kecamatan . $desa,
             'deskripsi' => $this->deskripsi,
             'potensi' => $this->potensi->nama,
+            'icon' => $this->bangunan->icon,
             'item' => $this->potensi->nama,
             'search' => '<a class="list-group-item list-group-item-action" onClick=goTo(' . $this->latitude . ',' . $this->longitude . ')>' . $this->nama . ', ' . $this->kabupaten->nama . $kecamatan . $desa . '</a>'
 

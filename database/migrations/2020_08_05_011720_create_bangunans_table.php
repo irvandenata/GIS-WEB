@@ -16,11 +16,12 @@ class CreateBangunansTable extends Migration
         Schema::create('bangunans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
+            $table->string('icon')->nullable();
             $table->unsignedInteger('potensi_id');
             $table->timestamps();
 
             $table->foreign('potensi_id')->references('id')->on('potensis')->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onUpdate('cascade');
         });
     }
 
