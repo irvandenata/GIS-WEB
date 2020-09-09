@@ -40,9 +40,9 @@ class PotensiController extends Controller
                 ->addColumn('action', function ($asset) {
                     return '
                     <div class="row justify-content-center">
-                               
+
                                 <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $asset->id . ')"  >Edit</span></a>
-                                
+
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $asset->id . ')" >Delete</span></a>
                                 </div>';
                 })

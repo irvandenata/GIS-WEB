@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Potensi;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
@@ -13,7 +14,8 @@ class MapController extends Controller
      */
     public function index()
     {
-        return view('admin.map.index');
+        $potensi = Potensi::all();
+        return view('admin.map.index', compact('potensi'));
     }
 
     /**

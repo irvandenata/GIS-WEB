@@ -15,28 +15,36 @@ use Illuminate\Http\Request;
 class PotensiController extends Controller
 {
     /**
-     * 
-     * @return PotensiResource 
+     *
+     * @return PotensiResource
      */
     public function index()
     {
-        $potensi = Potensi::all();
-        $data = $potensi->map(function ($potensi) {
-            return
-                $potensi->nama;
+        $asset = Asset::latest()->get();
+        $geoJSONdata = $asset->map(function ($asset) {
+            return [
+                'type'       => 'Feature',
+                'properties' => new PotensiResource($asset),
+                'geometry'   => [
+                    'type'        => 'Point',
+                    'coordinates' => [
+                        $asset->longitude,
+                        $asset->latitude,
+                    ],
+                ],
+            ];
         });
-        return [
-            'nama' => $data,
-            'jumlah' => $potensi->map(function ($potensi) {
-                return
-                    $potensi->assets->count();
-            })
-        ];
+
+
+        return response()->json([
+            'type'     => 'FeatureCollection',
+            'features' => $geoJSONdata,
+        ]);
     }
 
     /**
      * @param Potensi $potensi
-     * @return PotensiResource 
+     * @return PotensiResource
      */
     public function show(Potensi $potensi)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Bangunan;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PotensiResource extends JsonResource
@@ -14,7 +15,6 @@ class PotensiResource extends JsonResource
      */
     public function toArray($request)
     {
-
         $kecamatan = ($this->kecamatan->nama != "Belum di Isi") ? ', ' . $this->kecamatan->nama : '';
         $desa = ($this->desa->nama != "Belum di Isi") ? ', Kecamatan ' . $this->desa->nama : '';
         return [
@@ -28,7 +28,7 @@ class PotensiResource extends JsonResource
             'potensi' => $this->potensi->nama,
             'icon' => $this->bangunan->icon,
             'item' => $this->potensi->nama,
-            'search' => '<a class="list-group-item list-group-item-action" onClick=goTo(' . $this->latitude . ',' . $this->longitude . ')>' . $this->nama . ', ' . $this->kabupaten->nama . $kecamatan . $desa . '</a>'
+            'search' => '<a class="list-group-item list-group-item-action"  onClick=goTo(' . $this->latitude . ',' . $this->longitude . ')>' . $this->bangunan->nama . ', ' . $this->nama . ', ' . $this->kabupaten->nama . $kecamatan . $desa . '</a>'
 
         ];
     }

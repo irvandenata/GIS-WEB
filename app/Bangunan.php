@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bangunan extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['nama', 'icon', 'potensi_id'];
 
-    public function asset(){
+    public function asset()
+    {
         return $this->hasMany(Asset::class);
     }
-    public function potensi(){
+    public function potensi()
+    {
         return $this->belongsTo(Potensi::class);
     }
 }

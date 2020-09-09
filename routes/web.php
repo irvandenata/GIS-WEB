@@ -19,7 +19,7 @@ Route::get('/', function () {
 })->name('map');
 
 Auth::routes();
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
 Route::resource('map', 'MapController');
 
 Route::group(['middleware' => 'auth'], function () {
@@ -61,5 +61,5 @@ Route::group(['as' => 'wilayah.', 'namespace' => 'Wilayah', 'prefix' => 'wilayah
     Route::resource('desa', 'DesaController');
 
 
-    //endwilayah  
+    //endwilayah
 });

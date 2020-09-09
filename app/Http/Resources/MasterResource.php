@@ -14,8 +14,24 @@ class MasterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return
-            //'jumlah' => $this->assets->count()
-            $this->nama;
+        $geoJSONdata = $this->assets->map(function ($asset) {
+            return [
+                'type'       => 'Feature',
+                'properties' => new PotensiResource($asset),
+                'geometry'   => [
+                    'type'        => 'Point',
+                    'coordinates' => [
+                        $asset->longitude,
+                        $asset->latitude,
+                    ],
+                ],
+            ];
+        });
+
+
+        return response()->json([
+            'type'     => 'FeatureCollection',
+            'features' => $geoJSONdata,
+        ]);
     }
 }
