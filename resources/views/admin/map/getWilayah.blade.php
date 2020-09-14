@@ -57,29 +57,4 @@ L.geoJson(data,{
 map.addLayer(batasKabupaten);
 
 
-    axios.get('{{ route('api.potensi.index')}}')
-        .then(function(response) {
-                // console.log(response.data.features[0].properties.category_id);
-                //console.log(response.data);
-                searchEko = response.data.features;
-                L.geoJSON(response.data, {
-                    pointToLayer: function(geoJsonPoint, latlng) {
-
-                        return L.marker(latlng, {
-                            icon: new Icons({
-                            iconUrl: '{{ asset('storage')}}'+"/"+ geoJsonPoint.properties.icon
-                             })
-                        }).on('click', onClick).bindTooltip(geoJsonPoint.properties.desa+" : <br> "+geoJsonPoint.properties.bangunan,
-                        {
-                            permanent: true,
-                            direction: 'right'
-                        }
-                        );
-                    },
-
-                }).addTo(ekonomi);
-            })
-            .catch(function(error) {
-                console.log(error);
-            });
 </script>

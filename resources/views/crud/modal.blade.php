@@ -7,22 +7,14 @@
                 <input id="id" type="hidden" name="id" value="">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modalFormTitle">Modal title</h4>
-                    
+
                 </div>
                 <div class="modal-body">
-                    @yield('input-form')
-                    
-                            
-                                
-                               
-                               
-                              
-                         
 
-        
+                    @yield('input-form')
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button type="submit" class="btn btn-link waves-effect">Simpan</button>
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Tutup</button>
                 </div>

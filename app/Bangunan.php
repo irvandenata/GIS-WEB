@@ -8,7 +8,7 @@ class Bangunan extends Model
 {
     protected $fillable = ['nama', 'icon', 'potensi_id'];
 
-    public function asset()
+    public function assets()
     {
         return $this->hasMany(Asset::class);
     }

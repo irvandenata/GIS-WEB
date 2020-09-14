@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @push('styles')
@@ -19,55 +18,55 @@
 <!-- Content Wrapper. Contains page content -->
 
 
-  <!-- Main content -->
-  
-    <div class="container-fluid">
-      
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Data Seluruh Jenis Pada Potensi</h3>
-              <div class="card-tools" style="position: absolute;right: 1rem;top: .5rem;">
-                <a class="btn btn-sm btn-success" onclick="createItem()">
-                  <div class="demo-google-material-icon">
-                      <span class="text-white">Tambahkan Jenis</span>
-                  </div>
-              </a>
-            </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body mb-2">
-            <table id="dataTable" class="table table-bordered table-hover" >
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Potensi</th>
-                        <th>icon</th>
-                        <th>Action</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
+<!-- Main content -->
 
-                 
-                </tbody>
-           
-          </table>
-         
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Data Seluruh Jenis Pada Potensi</h3>
+                    <div class="card-tools" style="position: absolute;right: 1rem;top: .5rem;">
+                        <a class="btn btn-sm btn-success" onclick="createItem()">
+                            <div class="demo-google-material-icon">
+                                <span class="text-white">Tambahkan Jenis</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body mb-2">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Potensi</th>
+                                <th>icon</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </div>
+
         </div>
-        
-        
-      </div>
-      
     </div>
-  </div>
-    </div>
-    <!-- /.container-fluid -->
- 
-  <!-- /.content -->
-  @include('admin.bangunan._form')
+</div>
+<!-- /.container-fluid -->
+
+<!-- /.content -->
+@include('admin.bangunan._form')
 @endsection
 
 
@@ -82,19 +81,13 @@
 @endpush
 
 @push('js')
-    
+
 @include('crud.js')
 
 <script>
-
-
-
-
-
-
-  $('#dataTable').DataTable({
+    $('#dataTable').DataTable({
       dom: 'lBfrtip',
-      
+
       responsive:true,
       processing:true,
       serverSide:true,
@@ -114,7 +107,7 @@
       ]
   });
 
-  
+
     function createItem() {
         setForm('create','POST','Tambah Jenis Pada Potensi',true)
     }
@@ -123,7 +116,7 @@
         setForm('update','PUT','Edit Jenis Pada Potensi',true)
         editData(id)
     }
-    
+
     function deleteItem(id) {
         deleteConfirm(id)
     }
@@ -132,23 +125,23 @@
 <script>
     /** set data untuk edit**/
     function setData(result){
-        
+
         $('input[name=id]').val(result.id);
         $('input[name=nama]').val(result.nama);
-       
-       
+
+
 
         $("#typeID option").filter(function(){
             return $.trim($(this).val()) ==  result.potensi_id
         }).prop('selected', true);
-        $('#typeID').selectpicker('refresh');
-        
-        
+        // $('#typeID').selectpicker('refresh');
+
+
     }
-    
+
     // {{-- $('#ig_checkbox').click(function(){
     //     var checked = $(this).attr('checked');
-        
+
     //     if(checked == 'checked'){
     //         $('input[name=password]').attr('disabled',true);
     //         $(this).attr('checked',false);
@@ -164,9 +157,9 @@
     }
 
 
-    
 
-  
+
+
 
 
 

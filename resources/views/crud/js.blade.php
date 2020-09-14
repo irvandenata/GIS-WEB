@@ -8,9 +8,9 @@
         $('#modalForm form')[0].reset();
         $(':input[name=id]').val('');
         $('#modalFormTitle').text(title);
-        $('#modalForm').modal('show');  
-        
-         
+        $('#modalForm').modal('show');
+
+
     }
 
     function editData(id) {
@@ -33,7 +33,7 @@
         var id = $('#id').val();
         if (save_method == "create") url = child_url;
         else url = child_url + '/' + id;
-        
+
         return url;
     }
 
@@ -50,9 +50,13 @@
         });
     }
 
-    /** save data onsubmit**/    
+    /** save data onsubmit**/
     $(function () {
         $('#modalForm form').on('submit', function (e) {
+            // var textareaText = $('#textarea').val();
+            // textareaText = textareaText.replace(/\r?\n/g, '<br />');
+            // $('#textarea').val(textareaText);
+            // console.log($('#textarea').val())
             if (!e.isDefaultPrevented()) {
                 saveAjax(setUrl());
                 return false;
@@ -72,12 +76,12 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function (result) {  
+            success: function (result) {
                 $('#modalForm').modal('hide');
                 reloadDatatable();
-               
+
                 toastr.success('Berhasil Disimpan', 'Success');
-                
+
             },
             error: function (result) {
                 $('#modalForm').modal('hide');
@@ -148,16 +152,16 @@
     }
 
 
-    
 
- 
+
+
 
     var map = L.map('mapid').setView([ 0, 109], 10);
-    
+
     $('#modalForm').on('shown.bs.modal', function() {
         map.invalidateSize();
-       
-    
+
+
 
 
 
@@ -168,7 +172,7 @@
 
 
 
-    
+
 
     var mapCenter = [0.0528716965978, 110.73120117187];
 
@@ -196,12 +200,12 @@
     }
     $('#latitude').on('input', updateMarkerByInputs);
     $('#longitude').on('input', updateMarkerByInputs);
-    
+
 
 });
 
 // $('#modalForm').on('hidden.bs.modal', function() {
-    
+
 // });
 
 </script>

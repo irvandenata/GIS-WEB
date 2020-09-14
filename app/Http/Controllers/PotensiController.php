@@ -35,7 +35,7 @@ class PotensiController extends Controller
     public function api(Request $request, $id)
     {
         if ($request->ajax()) {
-            $assets = Asset::where("potensi_id", '=', $id)->get();
+            $assets = Asset::where("potensi_id", '=', $id)->latest()->get();
             return DataTables::of($assets)
                 ->addColumn('action', function ($asset) {
                     return '

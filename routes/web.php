@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.map.index');
-})->name('map');
+Route::resource('/', 'MapController');
 
 Auth::routes();
 
@@ -36,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('potensi/datakec/{id}', 'PotensiController@kecamatan')->name('datakec');
     Route::get('potensi/datades/{id}', 'PotensiController@desa')->name('datades');
     Route::get('potensi/datasel/{id}', 'PotensiController@sel')->name('datasel');
+
     //controller for listrik
     //  Route::resource('listrik', 'ListrikController',['except' => 'index']);
     //  Route::get('listrik/datakec/{id}','ListrikController@kecamatan')->name('datakec');

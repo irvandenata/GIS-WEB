@@ -26,12 +26,6 @@
                     </select>
                 </div>
             </div>
-
-
-
-
-
-
             <div class="col-6">
 
 
@@ -60,7 +54,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="form-group">
                     <label for="type">Desa</label>
@@ -72,9 +65,6 @@
                     </select>
                 </div>
             </div>
-
-
-
         </div>
 
 
@@ -82,9 +72,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="exampleInputConfirmtext1">Deskripsi</label>
-
-                    <textarea class="form-control" rows="5" id="textarea" placeholder="Deskripsi..." name="deskripsi"
+                    <label for="">Deskripsi</label>
+                    <textarea id="textarea" class="form-control" rows="5" placeholder="Deskripsi..." name="deskripsi"
                         value=" "></textarea>
                 </div>
             </div>
@@ -114,11 +103,7 @@
             <div class="col">
                 <div id="mapid" style="height: 335px"></div>
             </div>
-
         </div>
-
-
-
     </div>
 
 </div>

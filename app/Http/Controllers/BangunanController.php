@@ -22,7 +22,7 @@ class BangunanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $assets = Bangunan::all();
+            $assets = Bangunan::latest()->get();
             return DataTables::of($assets)
                 ->addColumn('action', function ($asset) {
                     return '
@@ -115,6 +115,23 @@ class BangunanController extends Controller
     public function update(Request $request, Bangunan $bangunan)
     {
 
+        $req = $request->all();
+        if ($request->hasFile('icon')) {
+            $name_picture = Str::random(6) . '.png';
+            $picture = Image::make($req['icon'])->resize(null, 300, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode('png', 90);
+            $path = "subpotensi/" . $name_picture;
+            if (Storage::exists('public/' . $bangunan->picture)) {
+                Storage::delete('public/' . $bangunan->picture);
+            }
+            Storage::put("public/" . $path, $picture);
+
+            $req['icon'] = $path;
+        }
+
+        $bangunan->update($req);
         return $bangunan;
     }
 

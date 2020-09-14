@@ -18,14 +18,14 @@ class KabupatenController extends Controller
     {
 
         if ($request->ajax()) {
-            $datas = Kabupaten::all();
+            $datas = Kabupaten::latest()->get();
             return DataTables::of($datas)
                 ->addColumn('action', function ($data) {
                     return '
                     <div class="row justify-content-center">
-                               
+
                                 <a class="btn btn-success btn-sm text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')">Edit</span></a>
-                                
+
                                 <a id="delete" class="btn btn-danger btn-sm text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
                 })
@@ -33,7 +33,7 @@ class KabupatenController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-     return view('admin.wilayah.kabupaten.index');
+        return view('admin.wilayah.kabupaten.index');
     }
 
     /**
@@ -43,7 +43,7 @@ class KabupatenController extends Controller
      */
     public function create()
     {
-        
+
         // return view('admin.wilayah.kabupaten.create');
     }
 
@@ -53,9 +53,9 @@ class KabupatenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Kabupaten $kabupaten)
-    {    
-        $kabupaten=Kabupaten::create($request->all());
+    public function store(Request $request, Kabupaten $kabupaten)
+    {
+        $kabupaten = Kabupaten::create($request->all());
         return $kabupaten;
     }
 
@@ -67,7 +67,6 @@ class KabupatenController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -78,7 +77,7 @@ class KabupatenController extends Controller
      */
     public function edit(Kabupaten $kabupaten)
     {
-        
+
         return $kabupaten;
     }
 

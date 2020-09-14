@@ -18,14 +18,14 @@ class KecamatanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $datas = Kecamatan::all();
+            $datas = Kecamatan::latest()->get();
             return DataTables::of($datas)
                 ->addColumn('action', function ($data) {
                     return '
                     <div class="row justify-content-center">
-                   
+
                                 <a class="btn btn-success text-white  mr-1 ml-1" onclick="editItem(' . $data->id . ')">Edit</span></a>
-                                
+
                                 <a id="delete" class="btn btn-danger text-white  mr-1 ml-1" onclick="deleteItem(' . $data->id . ')" >Delete</span></a>
                                 </div>';
                 })
@@ -37,8 +37,8 @@ class KecamatanController extends Controller
                 ->make(true);
         }
 
-     $data=Kabupaten::select('id','nama')->get();
-     return view('admin.wilayah.kecamatan.index',compact('data'));
+        $data = Kabupaten::select('id', 'nama')->get();
+        return view('admin.wilayah.kecamatan.index', compact('data'));
     }
 
     /**
@@ -58,9 +58,9 @@ class KecamatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Kecamatan $kecamatan)
-    {    
-        $kecamatan=Kecamatan::create($request->all());
+    public function store(Request $request, Kecamatan $kecamatan)
+    {
+        $kecamatan = Kecamatan::create($request->all());
         return $kecamatan;
     }
 
@@ -72,7 +72,6 @@ class KecamatanController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
