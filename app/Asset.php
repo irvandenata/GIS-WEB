@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    protected $fillable = ['nama','bangunan_id','potensi_id','kecamatan_id','kabupaten_id','desa_id','deskripsi','latitude','longitude'];
-   
+    protected $fillable = ['nama', 'subpotensi_id', 'potensi_id', 'kecamatan_id', 'kabupaten_id', 'desa_id', 'deskripsi', 'latitude', 'longitude'];
+
 
 
     public $appends = [
-       'search',
+        'search',
     ];
 
 
@@ -37,22 +37,27 @@ class Asset extends Model
     //     return $this->belongsTo(Category::class);
     // }
 
- public function bangunan(){
-        return $this->belongsTo(Bangunan::class);
+    public function subpotensi()
+    {
+        return $this->belongsTo(Subpotensi::class);
     }
 
-    public function kabupaten(){
+    public function kabupaten()
+    {
         return $this->belongsTo(Kabupaten::class);
     }
 
-    public function kecamatan(){
+    public function kecamatan()
+    {
         return $this->belongsTo(Kecamatan::class);
     }
 
-    public function desa(){
+    public function desa()
+    {
         return $this->belongsTo(Desa::class);
     }
-    public function potensi(){
+    public function potensi()
+    {
         return $this->belongsTo(Potensi::class);
     }
 
@@ -68,7 +73,7 @@ class Asset extends Model
     {
         $cardAttribute = '';
         $cardAttribute .= ' <li class="list-group-item">Desa Berlistrik, Temajok, Paloh, Sambas</li>';
-       
+
         // $card .= '<div class="my-2"><strong>'.__('Koordinat').':</strong><br>'.$this->coordinate.'</div>';
 
         return $cardAttribute;

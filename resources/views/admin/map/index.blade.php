@@ -154,7 +154,7 @@
                             </a>
 
                             <ul class="nav nav-treeview mb-2">
-                                @foreach ($item->bangunans as $items)
+                                @foreach ($item->subpotensis as $items)
                                 <li class="nav-item" style="margin-bottom:20px !important;">
                                     <a href="#"
                                         class="nav-link {{ Request::is('wilayah/kabupaten') ? 'active' : null }} "

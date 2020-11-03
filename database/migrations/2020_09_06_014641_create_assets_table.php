@@ -14,13 +14,13 @@ class CreateAssetsTable extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-           
+
             $table->increments('id');
-            $table->unsignedInteger('bangunan_id')->default(1);
+            $table->unsignedInteger('subpotensi_id')->default(1);
             $table->unsignedInteger('potensi_id');
-            
-           
-            
+
+
+
             $table->unsignedInteger('kabupaten_id')->default(1);
             $table->unsignedInteger('kecamatan_id')->default(1);
             $table->unsignedInteger('desa_id')->default(1);
@@ -29,20 +29,20 @@ class CreateAssetsTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('gambar')->nullable();
-            
-            
+
+
             $table->timestamps();
 
-            $table->foreign('bangunan_id')->references('id')->on('bangunans')->onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->foreign('subpotensi_id')->references('id')->on('subpotensis')->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreign('kabupaten_id')->references('id')->on('kabupatens')->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onUpdate('cascade');
             $table->foreign('kecamatan_id')->references('id')->on('kecamatans')->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onUpdate('cascade');
             $table->foreign('desa_id')->references('id')->on('desas')->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onUpdate('cascade');
             $table->foreign('potensi_id')->references('id')->on('potensis')->onDelete('cascade')
-            ->onUpdate('cascade');
+                ->onUpdate('cascade');
         });
     }
 

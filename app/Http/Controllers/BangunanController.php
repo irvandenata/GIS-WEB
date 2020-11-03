@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bangunan;
 use App\Potensi;
+use App\Subpotensi;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -22,7 +23,7 @@ class BangunanController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $assets = Bangunan::latest()->get();
+            $assets = Subpotensi::latest()->get();
             return DataTables::of($assets)
                 ->addColumn('action', function ($asset) {
                     return '
@@ -63,7 +64,7 @@ class BangunanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Bangunan $bangunan)
+    public function store(Request $request, Subpotensi $bangunan)
     {
 
         $req = $request->all();
@@ -80,7 +81,7 @@ class BangunanController extends Controller
         }
 
 
-        $bangunan = Bangunan::create($req);
+        $bangunan = Subpotensi::create($req);
         return $bangunan;
     }
 
@@ -90,7 +91,7 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bangunan $bangunan)
+    public function show(Subpotensi $bangunan)
     {
     }
 
@@ -100,7 +101,7 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bangunan $bangunan)
+    public function edit(Subpotensi $bangunan)
     {
         return $bangunan;
     }
@@ -112,7 +113,7 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bangunan $bangunan)
+    public function update(Request $request, Subpotensi $bangunan)
     {
 
         $req = $request->all();
@@ -141,7 +142,7 @@ class BangunanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bangunan $bangunan)
+    public function destroy(Subpotensi $bangunan)
     {
 
         Storage::delete('public/' . $bangunan->icon);

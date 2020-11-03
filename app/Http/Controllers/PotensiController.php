@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Kabupaten;
 use App\Kecamatan;
 use App\Potensi;
+use App\Subpotensi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -22,7 +23,7 @@ class PotensiController extends Controller
     public function index()
     {
 
-        $bangunan = Bangunan::where('potensi_id', '=', 1)->select('id', 'nama')->get();
+        $bangunan = Subpotensi::where('potensi_id', '=', 1)->select('id', 'nama')->get();
 
         $kab = Kabupaten::select('id', 'nama')->get();
         $kec = Kecamatan::select('id', 'nama')->get();
@@ -48,7 +49,7 @@ class PotensiController extends Controller
                 })
 
                 ->addColumn('bangunan', function ($asset) {
-                    return $asset->bangunan->nama;
+                    return $asset->subpotensi->nama;
                 })
                 ->addColumn('kabupaten', function ($asset) {
                     return $asset->kabupaten->nama;
@@ -61,7 +62,7 @@ class PotensiController extends Controller
                 })
 
                 ->removeColumn('potensi_id')
-                ->removeColumn('bangunan_id')
+                ->removeColumn('subpotensi_id')
                 ->removeColumn('kabupaten_id')
                 ->removeColumn('kecamatan_id')
                 ->removeColumn('desa_id')

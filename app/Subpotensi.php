@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bangunan extends Model
+class Subpotensi extends Model
 {
     protected $fillable = ['nama', 'icon', 'potensi_id'];
 
